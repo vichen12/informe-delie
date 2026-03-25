@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Brain — DELIE LATAM</title>
+<style>
+  :root {
+    --navy: #0D1B2A;
+    --blue: #1B4F72;
+    --accent: #2E86C1;
+    --gold: #F39C12;
+    --green: #1E8449;
+    --red: #C0392B;
+    --light-bg: #EBF5FB;
+    --alt-row: #F2F3F4;
+    --border: #AED6F1;
+    --text: #1A1A2E;
+    --muted: #5D6D7E;
+    --white: #ffffff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    background: #f5f6fa;
+    line-height: 1.6;
+  }
+  /* ── COVER ── */
+  .cover {
+    background: var(--navy);
+    color: white;
+    text-align: center;
+    padding: 80px 40px 60px;
+    margin-bottom: 0;
+  }
+  .cover .tag {
+    color: var(--gold);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .cover h1 {
+    font-size: 52px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    border-bottom: 4px solid var(--gold);
+    display: inline-block;
+    padding-bottom: 16px;
+    margin-bottom: 20px;
+  }
+  .cover .subtitle {
+    font-size: 20px;
+    color: #AED6F1;
+    margin-bottom: 10px;
+  }
+  .cover .tagline {
+    font-size: 13px;
+    color: #BDC3C7;
+    margin-top: 20px;
+  }
+  .metrics-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: white;
+    border-top: 4px solid var(--gold);
+  }
+  .metric-cell {
+    padding: 22px 16px 14px;
+    text-align: center;
+    border-right: 1px solid var(--border);
+  }
+  .metric-cell:last-child { border-right: none; }
+  .metric-val {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.1;
+  }
+  .metric-label {
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  /* ── CONTAINER ── */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px 60px;
+  }
+  /* ── TOC ── */
+  .toc {
+    background: white;
+    border-radius: 8px;
+    padding: 36px 40px;
+    margin: 32px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .toc-title {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .toc-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    color: var(--text);
+  }
+  .toc-item:hover { background: var(--light-bg); padding-left: 8px; transition: 0.2s; }
+  .toc-num {
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 13px;
+    width: 24px;
+    flex-shrink: 0;
+  }
+  .toc-text { flex: 1; font-size: 13px; color: var(--blue); font-weight: 600; }
+  /* ── SECTION ── */
+  .section {
+    background: white;
+    border-radius: 8px;
+    padding: 36px 40px;
+    margin: 24px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .section-header {
+    background: var(--navy);
+    color: white;
+    padding: 14px 20px;
+    margin: -36px -40px 28px;
+    border-radius: 8px 8px 0 0;
+    border-bottom: 4px solid var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-num {
+    background: var(--gold);
+    color: var(--navy);
+    font-weight: 900;
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+  .section-title {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  h2 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--blue);
+    margin: 24px 0 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--border);
+  }
+  h3 {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    margin: 16px 0 8px;
+  }
+  p { margin-bottom: 10px; text-align: justify; }
+  /* ── CALLOUT ── */
+  .callout {
+    background: #FEF9E7;
+    border: 1.5px solid var(--gold);
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 14px 0;
+    font-weight: 600;
+    font-size: 13px;
+  }
+  .callout .icon { font-size: 18px; margin-right: 8px; }
+  .info-box {
+    background: var(--light-bg);
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 14px 0;
+    font-size: 13px;
+  }
+  .info-box.green {
+    background: #EAFAF1;
+    border-color: var(--green);
+  }
+  /* ── TABLES ── */
+  .tbl-wrap { overflow-x: auto; margin: 10px 0 20px; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+  }
+  th {
+    background: var(--blue);
+    color: white;
+    padding: 9px 10px;
+    text-align: left;
+    font-weight: 700;
+  }
+  th.navy { background: var(--navy); }
+  td {
+    padding: 8px 10px;
+    border: 0.5px solid var(--border);
+    vertical-align: top;
+  }
+  tr:nth-child(even) td { background: var(--alt-row); }
+  tr.highlight td { background: #EAFAF1; font-weight: 700; color: var(--green); }
+  tr.highlight-gold td { background: #FEF9E7; font-weight: 700; color: #B7770D; }
+  tr.highlight-blue td { background: var(--light-bg); font-weight: 700; color: var(--blue); }
+  tr.total-row td { background: #D5F5E3; font-weight: 700; color: var(--green); }
+  /* ── METRICS ── */
+  .metrics-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 14px 0 20px;
+  }
+  .metrics-row.cols3 { grid-template-columns: repeat(3, 1fr); }
+  .metrics-row.cols2 { grid-template-columns: repeat(2, 1fr); }
+  .metric-box {
+    background: #F8FBFF;
+    padding: 18px 12px 12px;
+    text-align: center;
+  }
+  .metric-box .val {
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 1.1;
+  }
+  .metric-box .lbl {
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+  /* ── PILLARS ── */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 14px 0;
+  }
+  .pillar-header {
+    background: var(--navy);
+    color: white;
+    font-weight: 700;
+    font-size: 12px;
+    text-align: center;
+    padding: 10px;
+  }
+  .pillar-body {
+    padding: 12px;
+    font-size: 12px;
+    text-align: center;
+  }
+  .pillar-body.b1 { background: #EBF5FB; }
+  .pillar-body.b2 { background: #EAFAF1; }
+  .pillar-body.b3 { background: #FEF9E7; }
+  /* ── PHASE CARDS ── */
+  .phase-card {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 12px 0;
+  }
+  .phase-header {
+    padding: 12px 16px;
+    font-weight: 700;
+    font-size: 13px;
+    border-bottom: 2px solid var(--accent);
+  }
+  .phase-body {
+    display: grid;
+    grid-template-columns: 1fr 220px;
+    gap: 0;
+  }
+  .phase-actions {
+    padding: 12px 16px;
+    border-right: 1px solid var(--border);
+    font-size: 12px;
+  }
+  .phase-kpi {
+    padding: 12px 16px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--green);
+    background: #f9fffc;
+  }
+  /* ── RISK CARDS ── */
+  .risk-card {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 10px 0;
+  }
+  .risk-header {
+    background: var(--light-bg);
+    display: grid;
+    grid-template-columns: 44px 1fr 130px 130px;
+    border-bottom: 1px solid var(--border);
+    align-items: center;
+  }
+  .risk-id {
+    font-size: 16px;
+    font-weight: 900;
+    color: var(--gold);
+    text-align: center;
+    padding: 10px;
+  }
+  .risk-title { font-weight: 700; font-size: 13px; padding: 10px 6px; }
+  .risk-prob, .risk-impact { font-size: 11px; font-weight: 700; padding: 10px; }
+  .risk-mit { padding: 12px 16px; font-size: 12px; }
+  .risk-mit ul { margin-left: 18px; }
+  .risk-mit li { margin-bottom: 4px; }
+  /* ── COMPETITOR CARDS ── */
+  .comp-card {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 10px 0;
+  }
+  .comp-header {
+    background: var(--light-bg);
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--accent);
+  }
+  .comp-body {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    font-size: 12px;
+  }
+  .comp-label { font-weight: 700; padding: 7px 12px; border-bottom: 0.5px solid var(--border); border-right: 0.5px solid var(--border); color: var(--muted); background: #fafcff; }
+  .comp-value { padding: 7px 12px; border-bottom: 0.5px solid var(--border); }
+  /* ── ROADMAP ── */
+  .roadmap-card {
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 10px 0;
+    display: grid;
+    grid-template-columns: 80px 1fr;
+  }
+  .roadmap-year {
+    font-size: 32px;
+    font-weight: 900;
+    text-align: center;
+    padding: 20px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 2px solid currentColor;
+  }
+  .roadmap-content { padding: 16px 20px; }
+  .roadmap-content h3 { margin-top: 0; }
+  .roadmap-content ul { margin-left: 18px; font-size: 12.5px; }
+  .roadmap-content li { margin-bottom: 5px; }
+  /* ── COUNTRY CARDS ── */
+  .country-card {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 10px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .country-col { padding: 14px 16px; font-size: 12.5px; }
+  .country-col:first-child { border-right: 1px solid var(--border); }
+  /* ── PHRASE CARDS ── */
+  .phrase-context { font-weight: 700; font-size: 12px; color: var(--muted); margin: 12px 0 4px; }
+  .phrase-quote {
+    background: #FEF9E7;
+    border: 1px solid var(--gold);
+    border-radius: 5px;
+    padding: 12px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy);
+    font-style: italic;
+    margin-bottom: 4px;
+  }
+  /* ── REASON CARDS ── */
+  .reason-card {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 8px 0;
+  }
+  .reason-num {
+    background: #FEF9E7;
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--gold);
+    text-align: center;
+    padding: 14px 8px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 16px;
+  }
+  .reason-body { padding: 12px 14px; font-size: 13px; }
+  .reason-body strong { display: block; margin-bottom: 4px; }
+  /* ── LOOP BOX ── */
+  .loop-box {
+    background: var(--light-bg);
+    border: 2px solid var(--accent);
+    border-radius: 6px;
+    padding: 20px 24px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--navy);
+    margin: 16px 0;
+    line-height: 1.8;
+  }
+  /* ── FOOTER ── */
+  .doc-footer {
+    background: var(--navy);
+    color: #AED6F1;
+    text-align: center;
+    padding: 18px 24px;
+    font-size: 11px;
+    border-radius: 0 0 8px 8px;
+    margin: -36px -40px -36px;
+    margin-top: 30px;
+  }
+  /* ── CLOSING ── */
+  .closing {
+    background: var(--navy);
+    color: white;
+    border-radius: 8px;
+    padding: 40px;
+    margin: 24px 0;
+    text-align: center;
+  }
+  .closing p { color: #d0dae6; text-align: center; max-width: 700px; margin: 0 auto 12px; }
+  .closing .sign-off {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--gold);
+    margin-top: 24px;
+  }
+  /* ── BADGES ── */
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .badge-red { background: #FDEDEC; color: var(--red); }
+  .badge-green { background: #EAFAF1; color: var(--green); }
+  .badge-gold { background: #FEF9E7; color: #B7770D; }
+  .badge-blue { background: var(--light-bg); color: var(--blue); }
+  /* ── BULLET LIST ── */
+  .bullet-list { list-style: none; padding: 0; margin: 8px 0; }
+  .bullet-list li { padding: 4px 0 4px 18px; position: relative; font-size: 13px; }
+  .bullet-list li::before { content: "•"; position: absolute; left: 4px; color: var(--accent); font-weight: 700; }
+  .bullet-list li.green::before { color: var(--green); }
+  /* ── PRINT ── */
+  @media print {
+    body { background: white; }
+    .section, .toc { box-shadow: none; }
+    .metrics-strip { grid-template-columns: repeat(4,1fr); }
+  }
+  /* ── RESPONSIVE ── */
+  @media (max-width: 700px) {
+    .metrics-strip, .metrics-row { grid-template-columns: repeat(2,1fr); }
+    .pillars { grid-template-columns: 1fr; }
+    .phase-body, .country-card { grid-template-columns: 1fr; }
+    .risk-header { grid-template-columns: 44px 1fr; }
+    .roadmap-card { grid-template-columns: 1fr; }
+    .cover h1 { font-size: 34px; }
+    .section { padding: 28px 20px; }
+    .section-header { margin: -28px -20px 24px; }
+    .doc-footer { margin: 20px -20px -28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════ COVER -->
+<div class="cover">
+  <div class="tag">Business Brain</div>
+  <h1>DELIE LATAM</h1>
+  <div class="subtitle">Plan Estratégico Completo</div>
+  <div class="tag" style="margin-top:8px">Representación ASRS · Expansión Regional · Marca Personal</div>
+  <div class="tagline">Versión 1.0 · Marzo 2025 · CONFIDENCIAL — USO INTERNO</div>
+</div>
+<div class="metrics-strip">
+  <div class="metric-cell">
+    <div class="metric-val" style="color:var(--green)">~USD 100M/año</div>
+    <div class="metric-label">Mercado LATAM Vacío (DELIE)</div>
+  </div>
+  <div class="metric-cell">
+    <div class="metric-val" style="color:var(--accent)">+9.88%/año</div>
+    <div class="metric-label">Crecimiento ASRS LATAM</div>
+  </div>
+  <div class="metric-cell">
+    <div class="metric-val" style="color:var(--gold)">2025–2027</div>
+    <div class="metric-label">Ventana de Oportunidad</div>
+  </div>
+  <div class="metric-cell">
+    <div class="metric-val" style="color:var(--blue)">3–5 años</div>
+    <div class="metric-label">Años a Posición Dominante</div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ═══════════════════════════════════════════════════ TOC -->
+<div class="toc">
+  <div class="toc-title">Índice de Contenidos</div>
+  <a class="toc-item" href="#s01"><span class="toc-num">01</span><span class="toc-text">Resumen Ejecutivo</span></a>
+  <a class="toc-item" href="#s02"><span class="toc-num">02</span><span class="toc-text">Análisis de DELIE — La Empresa</span></a>
+  <a class="toc-item" href="#s03"><span class="toc-num">03</span><span class="toc-text">Mercado ASRS en Latinoamérica</span></a>
+  <a class="toc-item" href="#s04"><span class="toc-num">04</span><span class="toc-text">Análisis de Competencia LATAM</span></a>
+  <a class="toc-item" href="#s05"><span class="toc-num">05</span><span class="toc-text">Contexto Político-Económico Regional</span></a>
+  <a class="toc-item" href="#s06"><span class="toc-num">06</span><span class="toc-text">Tendencias Tecnológicas — IA y Automatización</span></a>
+  <a class="toc-item" href="#s07"><span class="toc-num">07</span><span class="toc-text">La Oportunidad — Tu Caso Específico</span></a>
+  <a class="toc-item" href="#s08"><span class="toc-num">08</span><span class="toc-text">Estrategia Comercial 2025–2028</span></a>
+  <a class="toc-item" href="#s09"><span class="toc-num">09</span><span class="toc-text">Estrategia de Negociación — Reunión con DELIE</span></a>
+  <a class="toc-item" href="#s10"><span class="toc-num">10</span><span class="toc-text">Proyección Financiera</span></a>
+  <a class="toc-item" href="#s11"><span class="toc-num">11</span><span class="toc-text">Integración con Marca Personal (2027+)</span></a>
+  <a class="toc-item" href="#s12"><span class="toc-num">12</span><span class="toc-text">Riesgos y Mitigación</span></a>
+  <a class="toc-item" href="#s13"><span class="toc-num">13</span><span class="toc-text">Roadmap Ejecutivo</span></a>
+  <a class="toc-item" href="#s14"><span class="toc-num">14</span><span class="toc-text">KPIs y Métricas</span></a>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ S01 -->
+<div class="section" id="s01">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <span class="section-title">Resumen Ejecutivo</span>
+  </div>
+
+  <div class="callout"><span class="icon">🚀</span>La oportunidad: representar a DELIE — fabricante chino de sistemas ASRS — en el Cono Sur (Argentina, Uruguay, Paraguay) con potencial de expansión a Chile, Colombia y Perú. Mercado desatendido, timing político-económico perfecto, y activos únicos que ningún competidor tiene.</div>
+
+  <h2>¿Qué es esto?</h2>
+  <p>Un plan estratégico completo para convertirse en el distribuidor oficial de DELIE en Latinoamérica, partiendo de Argentina. No es un trabajo de comisiones: es la construcción de una empresa distribuidora regional de tecnología logística con marca personal integrada como ventaja competitiva a partir de 2027.</p>
+
+  <h2>Los tres pilares del plan</h2>
+  <div class="pillars">
+    <div class="pillar-header">PILAR 1<br>DELIE + ASRS</div>
+    <div class="pillar-header">PILAR 2<br>ECOMMERCE</div>
+    <div class="pillar-header">PILAR 3<br>MARCA PERSONAL</div>
+    <div class="pillar-body b1">Representación y venta de sistemas ASRS en Cono Sur + expansión regional</div>
+    <div class="pillar-body b2">Importación de contenedores desde China. Sinergia con ASRS en logística</div>
+    <div class="pillar-body b3">Lanzamiento 2027 con experiencia real. Storytelling + programa de impulso a otros</div>
+  </div>
+
+  <h2>Proyección de ingresos (conservador)</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Año</th><th>Período</th><th>Ventas ASRS (Total)</th><th>Comisión ~3%</th><th>Países Activos</th></tr>
+    <tr><td>Año 1</td><td>2025</td><td>USD 500k – 1.2M</td><td>USD 15k – 36k</td><td>Argentina</td></tr>
+    <tr><td>Año 2</td><td>2026</td><td>USD 1.5M – 2.5M</td><td>USD 45k – 75k</td><td>ARG + URY + PRY</td></tr>
+    <tr><td>Año 3</td><td>2027</td><td>USD 3M – 5M</td><td>USD 90k – 150k</td><td>+ Chile</td></tr>
+    <tr><td>Año 4</td><td>2028</td><td>USD 5M – 8M</td><td>USD 150k – 250k</td><td>+ Colombia / Perú</td></tr>
+    <tr><td>Año 5</td><td>2029</td><td>USD 8M – 12M</td><td>USD 240k – 480k</td><td>Cono Sur completo</td></tr>
+  </table></div>
+
+  <h2>Factores críticos de éxito</h2>
+  <ul class="bullet-list">
+    <li class="green"><strong>✅ Relación privilegiada con DELIE:</strong> Ya los eligieron. La reunión es para formalizar, no para convencer.</li>
+    <li class="green"><strong>✅ Credibilidad técnica:</strong> Ingenieros en último año: hablan el idioma del cliente industrial.</li>
+    <li class="green"><strong>✅ Red de contactos B2B:</strong> Acceso directo a decisores en manufactura, logística y ecommerce.</li>
+    <li class="green"><strong>✅ Timing perfecto:</strong> Giro a la derecha regional + boom de automatización = ventana 2025-2027.</li>
+    <li class="green"><strong>✅ Capital disponible:</strong> Pueden invertir sin ahogarse los primeros 12 meses.</li>
+    <li class="green"><strong>✅ Early mover:</strong> DELIE no tiene presencia en Argentina. Son los primeros.</li>
+  </ul>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ S02 -->
+<div class="section" id="s02">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <span class="section-title">Análisis de DELIE — La Empresa</span>
+  </div>
+
+  <h2>2.1 Identidad Corporativa</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Campo</th><th>Detalle</th></tr>
+    <tr><td><strong>Nombre Legal (EN)</strong></td><td>DELI Intelligent Logistics Technology Co., Ltd.</td></tr>
+    <tr><td><strong>Nombre Legal (ZH)</strong></td><td>德力智慧物流科技有限公司 (Suzhou Deli)</td></tr>
+    <tr><td><strong>Nombre Comercial</strong></td><td>DELIE / DELIECN</td></tr>
+    <tr><td><strong>Fundación</strong></td><td>Más de 10 años (aprox. 2012–2015)</td></tr>
+    <tr><td><strong>Sede Central</strong></td><td>Suzhou Industrial Park, Jiangsu Province, China</td></tr>
+    <tr><td><strong>Tipo de Empresa</strong></td><td>Sociedad por Acciones Limitada (privada, no cotiza)</td></tr>
+    <tr><td><strong>Websites</strong></td><td>deliecn.com · es.deliecn.com · delilogitech.com</td></tr>
+    <tr><td><strong>Certificaciones</strong></td><td>CE (sistemas ASRS) · ISO (gestión de calidad)</td></tr>
+    <tr><td><strong>Instalaciones globales</strong></td><td>1,000+ proyectos ASRS completados</td></tr>
+    <tr><td><strong>Clientes destacados</strong></td><td>State Grid China · CATL · JD Logistics · China Tobacco · BASF Shanshan</td></tr>
+  </table></div>
+
+  <h2>2.2 Estructura Organizacional</h2>
+  <p>DELIE opera con un modelo de <strong>Sede Central + 3 Centros de I+D + 3 Bases de Manufactura + 13 redes de ventas y postventa</strong>. Sus centros de I+D están en Suzhou, Zhengzhou y Kunming. Toda la producción se concentra en China, exportando globalmente a través de distribuidores regionales.</p>
+
+  <h2>2.3 Capacidad Productiva</h2>
+  <div class="metrics-row">
+    <div class="metric-box"><div class="val" style="color:var(--blue)">1,000+</div><div class="lbl">Instalaciones Completadas</div></div>
+    <div class="metric-box"><div class="val" style="color:var(--accent)">550,000+</div><div class="lbl">Piezas en Almacenamiento Gestionado</div></div>
+    <div class="metric-box"><div class="val" style="color:var(--green)">50,000</div><div class="lbl">Piezas/día de Throughput</div></div>
+    <div class="metric-box"><div class="val" style="color:var(--gold)">1,000+</div><div class="lbl">Clientes Activos</div></div>
+  </div>
+
+  <h2>2.4 Líneas de Productos</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Sistema</th><th>Descripción</th><th>Ideal Para</th></tr>
+    <tr><td><strong>Miniload ASRS</strong></td><td>Para cajas/bins pequeños en pasillos estrechos</td><td>Ecommerce · Farmacéutica · Electrónica</td></tr>
+    <tr><td><strong>Pallet ASRS</strong></td><td>Almacenamiento masivo de pallets completos</td><td>Distribución · Manufactura · Retail</td></tr>
+    <tr><td><strong>Shuttle Systems</strong></td><td>Carros automáticos de alta densidad</td><td>Congelados · Espacios limitados</td></tr>
+    <tr><td><strong>Stacker Cranes</strong></td><td>Transelevadores automáticos</td><td>Almacenes de altura · Proyectos grandes</td></tr>
+    <tr><td><strong>AGVs / RGVs</strong></td><td>Vehículos guiados automáticos</td><td>Transporte interno · Picking</td></tr>
+    <tr><td><strong>Soluciones Híbridas</strong></td><td>Combinación customizada de tecnologías</td><td>Necesidades específicas complejas</td></tr>
+    <tr><td><strong>WMS Integrado</strong></td><td>Software de gestión de almacenes propio</td><td>Todos los proyectos</td></tr>
+  </table></div>
+
+  <h2>2.5 Presencia Internacional</h2>
+  <p>DELIE cuenta con tres centros de soporte internacionales y websites en chino, inglés y español. Su presencia confirmada en LATAM es <strong>Brasil y México</strong>. El resto del Cono Sur — Argentina, Chile, Uruguay, Paraguay — está <strong>sin cobertura</strong>. Su modelo internacional se basa en distribuidores locales (no abre oficinas propias). Esto representa la oportunidad central de este plan.</p>
+  <div class="tbl-wrap"><table>
+    <tr><th>Región</th><th>Presencia DELIE</th><th>Nota</th></tr>
+    <tr><td>China (doméstico)</td><td>Muy fuerte</td><td>13 redes de ventas/servicio</td></tr>
+    <tr><td>Brasil</td><td>Establecida</td><td>Distribuidor activo</td></tr>
+    <tr><td>México</td><td>Establecida</td><td>Distribuidor activo</td></tr>
+    <tr class="highlight"><td>Argentina</td><td><strong>VACÍO ← USTEDES</strong></td><td>Oportunidad principal</td></tr>
+    <tr><td>Chile</td><td>VACÍO</td><td>Oportunidad año 3</td></tr>
+    <tr><td>Uruguay / Paraguay</td><td>VACÍO</td><td>Oportunidad año 2</td></tr>
+    <tr><td>Colombia / Perú</td><td>VACÍO</td><td>Oportunidad año 4+</td></tr>
+    <tr><td>Asia (otros países)</td><td>Selectiva</td><td>Proyectos puntuales</td></tr>
+  </table></div>
+
+  <h2>2.6 Posicionamiento de Mercado (Comparativo Global)</h2>
+  <p>DELIE se posiciona como fabricante <strong>Tier 2–3 a nivel global</strong>: no es líder mundial como Dematic o SSI Schäfer, pero tampoco es un fabricante menor. Su ventaja competitiva central es el <strong>precio 30–50% menor que los líderes europeos/americanos</strong>, con calidad probada y certificaciones internacionales.</p>
+  <div class="tbl-wrap"><table>
+    <tr><th class="navy">Empresa</th><th class="navy">Tier Global</th><th class="navy">Precio Relativo</th><th class="navy">Presencia LATAM</th><th class="navy">Amenaza para DELIE</th></tr>
+    <tr><td>Dematic (KION)</td><td>Tier 1</td><td>Muy alto (ref. 100%)</td><td>Chile + proyectos</td><td><span class="badge badge-green">Baja</span></td></tr>
+    <tr><td>SSI Schäfer</td><td>Tier 1</td><td>Alto</td><td>Brasil + selectiva</td><td><span class="badge badge-green">Baja-Media</span></td></tr>
+    <tr><td>Swisslog (KUKA)</td><td>Tier 1</td><td>Muy alto</td><td>México + LATAM</td><td><span class="badge badge-green">Baja</span></td></tr>
+    <tr><td>Kardex</td><td>Tier 1</td><td>Alto</td><td>Distribuidores</td><td><span class="badge badge-green">Baja (nicho)</span></td></tr>
+    <tr><td><strong>Mecalux</strong></td><td>Tier 2</td><td>Medio-alto</td><td>ARG + CHL + COL</td><td><span class="badge badge-red">MEDIA-ALTA ⚠️</span></td></tr>
+    <tr class="highlight-blue"><td><strong>DELIE (USTEDES)</strong></td><td>Tier 2–3</td><td>Medio-bajo (-35%)</td><td>BR + MX + USTEDES</td><td>—</td></tr>
+    <tr><td>Otros chinos s/marca</td><td>Tier 3</td><td>Bajo</td><td>Casi nula</td><td><span class="badge badge-green">Baja</span></td></tr>
+  </table></div>
+  <div class="callout"><span class="icon">💡</span>Conclusión: DELIE ocupa el sweet spot perfecto para LATAM — tecnología seria + precio accesible. Las empresas medianas (ticket USD 100k–800k) no pueden pagar Tier 1, pero necesitan más que un fabricante sin marca.</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ S03 -->
+<div class="section" id="s03">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <span class="section-title">Mercado ASRS en Latinoamérica</span>
+  </div>
+
+  <h2>3.1 Tamaño y Crecimiento del Mercado</h2>
+  <div class="metrics-row">
+    <div class="metric-box"><div class="val" style="color:var(--blue)">USD 26.5B</div><div class="lbl">Mercado Global ASRS 2024</div></div>
+    <div class="metric-box"><div class="val" style="color:var(--green)">+15.9%/año</div><div class="lbl">CAGR Global 2025–2034</div></div>
+    <div class="metric-box"><div class="val" style="color:var(--accent)">~USD 400M</div><div class="lbl">Mercado LATAM ASRS 2025</div></div>
+    <div class="metric-box"><div class="val" style="color:var(--gold)">+9.88%/año</div><div class="lbl">CAGR LATAM 2025–2033</div></div>
+  </div>
+  <p>El mercado latinoamericano de ASRS crece impulsado por la explosión del ecommerce, la modernización logística y el aumento de costos laborales. El mercado de ecommerce en LATAM alcanzó <strong>USD 1.61 trillones en 2025</strong> y se proyecta en USD 4.06 trillones para 2034 — eso genera demanda directa e imparable de automatización de almacenes.</p>
+
+  <h2>3.2 Distribución del Mercado por País</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>País</th><th>Mercado Anual Estimado</th><th>Madurez</th><th>Competencia</th><th>Status DELIE</th></tr>
+    <tr><td>Brasil</td><td>USD 120–150M</td><td>Media-Alta</td><td>Alta</td><td>✅ Presente</td></tr>
+    <tr><td>México</td><td>USD 100–120M</td><td>Media-Alta</td><td>Alta</td><td>✅ Presente</td></tr>
+    <tr class="highlight"><td><strong>Argentina</strong></td><td><strong>USD 20–30M</strong></td><td>Media</td><td>Media</td><td><strong>❌ VACÍO → Ustedes</strong></td></tr>
+    <tr><td>Colombia</td><td>USD 20–25M</td><td>Media</td><td>Media</td><td>❌ VACÍO</td></tr>
+    <tr><td>Chile</td><td>USD 15–20M</td><td>Media-Alta</td><td>Media-Alta</td><td>❌ VACÍO</td></tr>
+    <tr><td>Perú</td><td>USD 8–12M</td><td>Baja-Media</td><td>Baja</td><td>❌ VACÍO</td></tr>
+    <tr><td>Uruguay</td><td>USD 3–5M</td><td>Baja-Media</td><td>Baja</td><td>❌ VACÍO</td></tr>
+    <tr><td>Paraguay</td><td>USD 1–2M</td><td>Baja</td><td>Muy baja</td><td>❌ VACÍO</td></tr>
+    <tr><td>Otros LATAM</td><td>USD 15–25M</td><td>Variable</td><td>Variable</td><td>❌ VACÍO</td></tr>
+  </table></div>
+  <p><strong>Mercado total sin cobertura DELIE fuera de Brasil/México: USD 85–120M anuales.</strong></p>
+
+  <h2>3.3 Segmentos Target Prioritarios</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Segmento</th><th>Necesidad Principal</th><th>Ticket Promedio</th><th>Prioridad</th></tr>
+    <tr><td><strong>Ecommerce / Fulfillment</strong></td><td>Picking rápido, SKUs múltiples, 24/7</td><td>USD 100k–500k</td><td><span class="badge badge-red">🔥 ALTA</span></td></tr>
+    <tr><td><strong>Logística 3PL</strong></td><td>Max. espacio, multi-cliente, flexibilidad</td><td>USD 200k–2M</td><td><span class="badge badge-red">🔥 ALTA</span></td></tr>
+    <tr><td>Manufactura</td><td>Just-in-time, trazabilidad, partes</td><td>USD 150k–1M</td><td><span class="badge badge-gold">MEDIA-ALTA</span></td></tr>
+    <tr><td>Alimentos y Bebidas</td><td>Temperatura, FIFO/FEFO, sanitario</td><td>USD 100k–800k</td><td><span class="badge badge-gold">MEDIA-ALTA</span></td></tr>
+    <tr><td>Farmacéutica</td><td>Trazabilidad total, precisión</td><td>USD 150k–600k</td><td><span class="badge badge-blue">MEDIA</span></td></tr>
+    <tr><td>Retail Moderno</td><td>Distribución omnicanal, velocidad</td><td>USD 200k–1.5M</td><td><span class="badge badge-blue">MEDIA</span></td></tr>
+  </table></div>
+
+  <h2>3.4 Ciclo de Venta ASRS</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Fase</th><th>Duración</th><th>Actividades Clave</th></tr>
+    <tr><td>Prospección</td><td>1–3 meses</td><td>Identificar necesidad, contacto inicial, primer filtro</td></tr>
+    <tr><td>Diagnóstico</td><td>2–4 semanas</td><td>Visita a instalaciones, levantamiento de requerimientos</td></tr>
+    <tr><td>Propuesta Técnica</td><td>4–8 semanas</td><td>Diseño por DELIE, cotización, presentación</td></tr>
+    <tr><td>Negociación</td><td>1–3 meses</td><td>Ajustes, aprobaciones internas, financiamiento</td></tr>
+    <tr><td>Cierre</td><td>2–4 semanas</td><td>Firma de contrato, anticipo</td></tr>
+    <tr><td>Implementación</td><td>3–8 meses</td><td>Fabricación en China, envío, instalación, puesta en marcha</td></tr>
+    <tr class="highlight-blue"><td><strong>TOTAL</strong></td><td><strong>8–18 meses</strong></td><td><strong>Promedio 12 meses por proyecto</strong></td></tr>
+  </table></div>
+  <div class="info-box">⚠️ <strong>Implicación operativa:</strong> Nunca dependas de 1 sola venta. Mantener pipeline de 10–20 prospectos simultáneos en diferentes etapas es lo que genera ingresos estables. El capital disponible es tu seguro mientras los ciclos maduran.</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ S04 -->
+<div class="section" id="s04">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <span class="section-title">Análisis de Competencia LATAM</span>
+  </div>
+
+  <h2>4.1 Competidores — Perfiles Completos</h2>
+
+  <div class="comp-card">
+    <div class="comp-header"><h3 style="margin:0">Mecalux / Interlake Mecalux &nbsp;·&nbsp; España &nbsp;·&nbsp; Tier 2 &nbsp;&nbsp;<span class="badge badge-red">⚠️ AMENAZA ALTA</span></h3></div>
+    <div class="comp-body">
+      <div class="comp-label">Oficinas LATAM</div><div class="comp-value">Argentina (Buenos Aires - Villa Maipú) · Chile (Santiago - Vitacura) · Colombia (Bogotá) · Brasil · México</div>
+      <div class="comp-label">Productos</div><div class="comp-value">Racks industriales (core) + automatización ASRS + Pallet Shuttle</div>
+      <div class="comp-label">Precio</div><div class="comp-value">Medio-Alto</div>
+      <div class="comp-label">Debilidades</div><div class="comp-value">Automatización no es su core. Más rígidos. Precio mayor que DELIE.</div>
+    </div>
+  </div>
+
+  <div class="comp-card">
+    <div class="comp-header"><h3 style="margin:0">Dematic (Grupo KION) &nbsp;·&nbsp; USA/Alemania &nbsp;·&nbsp; Tier 1 &nbsp;&nbsp;<span class="badge badge-green">Amenaza Baja</span></h3></div>
+    <div class="comp-body">
+      <div class="comp-label">Oficinas LATAM</div><div class="comp-value">Chile (Santiago — cubre Argentina, Bolivia, Colombia, Ecuador, Paraguay, Perú, Uruguay)</div>
+      <div class="comp-label">Productos</div><div class="comp-value">AutoStore · Miniload · AMRs · Sistemas completos</div>
+      <div class="comp-label">Precio</div><div class="comp-value">Muy Alto</div>
+      <div class="comp-label">Debilidades</div><div class="comp-value">Solo grandes proyectos (USD 2M+). No atiende clientes medianos.</div>
+    </div>
+  </div>
+
+  <div class="comp-card">
+    <div class="comp-header"><h3 style="margin:0">Swisslog (Grupo KUKA) &nbsp;·&nbsp; Suiza/Alemania &nbsp;·&nbsp; Tier 1 &nbsp;&nbsp;<span class="badge badge-green">Amenaza Baja</span></h3></div>
+    <div class="comp-body">
+      <div class="comp-label">Oficinas LATAM</div><div class="comp-value">México (Tlalnepantla) — cobertura LATAM desde allí</div>
+      <div class="comp-label">Productos</div><div class="comp-value">PowerStore · AutoStore · SynQ software · Robots</div>
+      <div class="comp-label">Precio</div><div class="comp-value">Muy Alto</div>
+      <div class="comp-label">Debilidades</div><div class="comp-value">Enfoque en proyectos muy grandes. Poco interés en mercado medio.</div>
+    </div>
+  </div>
+
+  <div class="comp-card">
+    <div class="comp-header"><h3 style="margin:0">SSI Schäfer &nbsp;·&nbsp; Alemania &nbsp;·&nbsp; Tier 1 &nbsp;&nbsp;<span class="badge badge-green">Amenaza Baja-Media</span></h3></div>
+    <div class="comp-body">
+      <div class="comp-label">Oficinas LATAM</div><div class="comp-value">Brasil (establecida) + proyectos selectivos en Argentina/Chile</div>
+      <div class="comp-label">Productos</div><div class="comp-value">Sistemas completos · Miniload · Shuttle · WMS</div>
+      <div class="comp-label">Precio</div><div class="comp-value">Alto</div>
+      <div class="comp-label">Debilidades</div><div class="comp-value">Burocracia corporativa. Tiempos largos. Precio premium.</div>
+    </div>
+  </div>
+
+  <div class="comp-card">
+    <div class="comp-header"><h3 style="margin:0">Kardex &nbsp;·&nbsp; Suiza &nbsp;·&nbsp; Tier 1 &nbsp;&nbsp;<span class="badge badge-green">Amenaza Baja (nicho diferente)</span></h3></div>
+    <div class="comp-body">
+      <div class="comp-label">Oficinas LATAM</div><div class="comp-value">Distribuidores puntuales en región</div>
+      <div class="comp-label">Productos</div><div class="comp-value">Vertical Lift Modules (nicho específico)</div>
+      <div class="comp-label">Precio</div><div class="comp-value">Alto</div>
+      <div class="comp-label">Debilidades</div><div class="comp-value">Producto limitado a VLMs. No ofrece ASRS completo.</div>
+    </div>
+  </div>
+
+  <h2>4.2 Estrategia vs. Cada Competidor</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Competidor</th><th>Estrategia de Diferenciación DELIE</th></tr>
+    <tr><td><strong>vs. Dematic / SSI / Swisslog (Tier 1)</strong></td><td>NO competir directamente. Enfocarse en proyectos USD 100k–800k que ellos ignoran. Pitch: "Misma tecnología, 35% menos precio, atención personalizada".</td></tr>
+    <tr><td><strong>vs. Mecalux (Tier 2 — AMENAZA REAL)</strong></td><td>Enfatizar que DELIE ES fabricante directo (Mecalux revende en automatización). Mayor customización. Precio más competitivo. Ustedes: servicio ultra-personalizado.</td></tr>
+    <tr><td><strong>vs. Chinos sin marca</strong></td><td>Competir en credibilidad: DELIE tiene 10+ años, certificaciones CE/ISO, 1,000+ proyectos. "Precio chino, con respaldo de empresa seria. No estás solo después de comprar."</td></tr>
+  </table></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ S05 -->
+<div class="section" id="s05">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <span class="section-title">Contexto Político-Económico Regional</span>
+  </div>
+
+  <p>El giro simultáneo a la derecha en múltiples países de LATAM crea una <strong>ventana de oportunidad única de 2–3 años</strong> que no se repite cada década.</p>
+
+  <h2>🇦🇷 Argentina — Milei (La Libertad Avanza)</h2>
+  <div class="country-card">
+    <div class="country-col">
+      <strong style="font-size:12px;color:var(--muted)">CAMBIOS ESTRUCTURALES</strong>
+      <ul class="bullet-list" style="margin-top:8px">
+        <li>Desregulación económica masiva</li>
+        <li>Apertura brutal a importaciones</li>
+        <li>RIGI — incentivos a grandes inversiones</li>
+        <li>Pro-tecnología y eficiencia</li>
+        <li>Eliminación de controles cambiarios</li>
+      </ul>
+    </div>
+    <div class="country-col">
+      <strong style="font-size:12px;color:var(--muted)">IMPACTO EN ASRS</strong>
+      <p style="margin-top:8px;font-size:12.5px">BOOM de inversión en warehousing 2025-2027. Empresas con cash buscando optimizar. Importar tecnología es MÁS FÁCIL que en la última década.</p>
+      <div class="badge badge-red" style="margin-top:8px">🔥 MUY FAVORABLE</div>
+    </div>
+  </div>
+
+  <h2>🇺🇾 Uruguay — Derecha consolidada</h2>
+  <div class="country-card">
+    <div class="country-col">
+      <strong style="font-size:12px;color:var(--muted)">CAMBIOS ESTRUCTURALES</strong>
+      <ul class="bullet-list" style="margin-top:8px">
+        <li>Estabilidad política histórica</li>
+        <li>Economía abierta y predecible</li>
+        <li>Hub logístico regional (Zona Franca)</li>
+        <li>Pro-inversión extranjera</li>
+      </ul>
+    </div>
+    <div class="country-col">
+      <strong style="font-size:12px;color:var(--muted)">IMPACTO EN ASRS</strong>
+      <p style="margin-top:8px;font-size:12.5px">Mercado pequeño pero sólido. Empresas regionales usan Uruguay como base logística. Puerta de entrada ideal al Mercosur.</p>
+      <div class="badge badge-green" style="margin-top:8px">✅ FAVORABLE</div>
+    </div>
+  </div>
+
+  <h2>🇨🇱 Chile — Centro-derecha ganando terreno</h2>
+  <div class="country-card">
+    <div class="country-col">
+      <strong style="font-size:12px;color:var(--muted)">CAMBIOS ESTRUCTURALES</strong>
+      <ul class="bullet-list" style="margin-top:8px">
+        <li>Economía históricamente abierta</li>
+        <li>Infraestructura logística más desarrollada</li>
+        <li>Empresas sofisticadas y tech-friendly</li>
+        <li>Clima de inversión estable</li>
+      </ul>
+    </div>
+    <div class="country-col">
+      <strong style="font-size:12px;color:var(--muted)">IMPACTO EN ASRS</strong>
+      <p style="margin-top:8px;font-size:12.5px">Mercado más maduro y competitivo. Clientes sofisticados. Requiere credenciales más sólidas. Prioridad Año 3.</p>
+      <div class="badge badge-green" style="margin-top:8px">✅ FAVORABLE (año 3)</div>
+    </div>
+  </div>
+
+  <div class="callout"><span class="icon">⚡</span><strong>SI ENTRAN AHORA (2025):</strong> surfean la ola de apertura e inversión. <strong>SI ESPERAN 3 AÑOS:</strong> mercado saturado, márgenes bajos, competidores establecidos. La ventana es <strong>AHORA</strong>.</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ S06 -->
+<div class="section" id="s06">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <span class="section-title">Tendencias Tecnológicas — IA y Automatización</span>
+  </div>
+
+  <h2>6.1 IA en Logística — Las 5 tendencias clave 2025–2030</h2>
+  <ul class="bullet-list" style="font-size:13.5px">
+    <li><strong>WMS con IA Predictiva:</strong> El software de gestión de almacenes ya no solo registra: predice. Forecasting de demanda automático, reabastecimiento inteligente, optimización de espacio en tiempo real.</li>
+    <li><strong>Mantenimiento Predictivo:</strong> Sensores IoT en todos los equipos + ML detectan fallas antes que ocurran. Reducción del downtime del 40–60%. Cero sorpresas.</li>
+    <li><strong>Robótica Colaborativa (AMRs + ASRS):</strong> Robots móviles autónomos trabajando junto a los sistemas ASRS. Dark warehouses: operación 24/7 sin humanos. Picking automático total.</li>
+    <li><strong>Micro-Fulfillment Centers:</strong> ASRS compactos para última milla urbana. Entrega same-day. Expansión masiva del ecommerce los impulsa.</li>
+    <li><strong>Integración End-to-End:</strong> Ya no es solo almacenamiento: toda la cadena logística automatizada desde recepción hasta despacho. ERP + WMS + ASRS + robótica en un solo sistema.</li>
+  </ul>
+
+  <h2>6.2 La Presión Competitiva que Vuelve ASRS Obligatorio</h2>
+  <div class="info-box green">
+    <strong>Antes (2010-2020):</strong> ASRS = nice to have. Solo grandes players.<br><br>
+    <strong>Ahora (2025+):</strong> ASRS = must have. Empresas medianas lo necesitan para sobrevivir.<br><br>
+    El ROI bajó de 7-10 años a <strong>3-5 años</strong>. El precio de la tecnología cayó 30-40%. Si tu competidor tiene ASRS y vos no, perdés competitividad de forma medible.
+  </div>
+
+  <h2>6.3 Por Qué Esto es Oro para Ustedes</h2>
+  <p>No están vendiendo racks automáticos. Están vendiendo <strong>supervivencia competitiva</strong>. El pitch correcto no es técnico: es estratégico.</p>
+  <div class="callout" style="font-style:italic">"Si no automatizás hoy, en 2–3 años no vas a poder competir con los que sí lo hicieron. Te muestro cómo hacerlo sin romper el banco."</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ S07 -->
+<div class="section" id="s07">
+  <div class="section-header">
+    <span class="section-num">07</span>
+    <span class="section-title">La Oportunidad — Tu Caso Específico</span>
+  </div>
+
+  <h2>7.1 Por Qué DELIE Los Eligió a Ustedes</h2>
+  <p>La chica de DELIE dijo literalmente: <strong>"Ya son parte de DELIE, solo queda la burocracia"</strong>. Esto no es un proceso de selección. Ya los eligieron. La reunión del martes es para formalizar los términos de una decisión tomada.</p>
+
+  <div class="reason-card">
+    <div class="reason-num">1</div>
+    <div class="reason-body"><strong>Contacto familiar con China</strong> — El papá de tu amigo tiene relación directa. Esto NO es transaccional — es personal. En cultura china, la confianza personal vale más que cualquier CV.</div>
+  </div>
+  <div class="reason-card">
+    <div class="reason-num">2</div>
+    <div class="reason-body"><strong>Ingenieros en 5to año</strong> — Credibilidad técnica automática. Cuando un cliente pregunte algo técnico, no responden como vendedores: responden como ingenieros. Eso cierra ventas.</div>
+  </div>
+  <div class="reason-card">
+    <div class="reason-num">3</div>
+    <div class="reason-body"><strong>Jóvenes con hambre</strong> — Van a trabajar más duro que un distribuidor establecido. DELIE lo sabe. Un jugador hambriento que construye > un jugador cómodo que mantiene.</div>
+  </div>
+  <div class="reason-card">
+    <div class="reason-num">4</div>
+    <div class="reason-body"><strong>Visión regional</strong> — No quieren solo vender en Argentina. Quieren construir DELIE en LATAM. Eso alinea perfectamente con los objetivos de expansión de DELIE.</div>
+  </div>
+  <div class="reason-card">
+    <div class="reason-num">5</div>
+    <div class="reason-body"><strong>Bajo riesgo para DELIE</strong> — No tienen que poner oficina ni estructura. Si funciona, ganan región. Si no funciona, no perdieron nada. Riesgo asimétrico a favor de DELIE.</div>
+  </div>
+
+  <h2>7.2 Sus Activos Únicos</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th></th><th>Activo</th><th>Valor</th><th>Descripción</th></tr>
+    <tr><td>🤝</td><td><strong>Relación privilegiada con DELIE</strong></td><td><span style="color:var(--gold);font-weight:700">Invaluable</span></td><td>No es una relación transaccional. Es personal y emocional. La chica se emocionó. Eso genera lealtad bidireccional de largo plazo.</td></tr>
+    <tr><td>🎓</td><td><strong>Credibilidad técnica (ingenieros)</strong></td><td><span style="color:var(--blue);font-weight:700">Alta</span></td><td>Los clientes B2B confían más en alguien que entiende su problema técnico que en un vendedor puro.</td></tr>
+    <tr><td>👔</td><td><strong>Red de contactos B2B directa</strong></td><td><span style="color:var(--blue);font-weight:700">Alta</span></td><td>Acceso a gerentes y dueños de grandes empresas. No hacen cold calling desde cero.</td></tr>
+    <tr><td>👨‍👩‍👧‍👦</td><td><strong>Respaldo familiar con experiencia</strong></td><td><span style="color:var(--green);font-weight:700">Alta</span></td><td>Mentores que ya recorrieron el camino. Evita errores de principiante. Curva de aprendizaje más rápida.</td></tr>
+    <tr><td>💰</td><td><strong>Capital disponible</strong></td><td><span style="color:var(--green);font-weight:700">Media-Alta</span></td><td>No dependen de comisiones para sobrevivir. Pueden aguantar 12+ meses de ciclos largos sin angustia.</td></tr>
+    <tr><td>🎨</td><td><strong>Skills de diseño y presentación</strong></td><td><span style="color:var(--accent);font-weight:700">Media</span></td><td>Material de marketing profesional sin terceros. Propuestas de nivel corporativo a costo cero.</td></tr>
+    <tr><td>🚀</td><td><strong>Ambición regional clara</strong></td><td><span style="color:var(--blue);font-weight:700">Alta</span></td><td>Quieren toda LATAM, no solo Argentina. Eso hace que DELIE los vea como socios estratégicos, no vendedores.</td></tr>
+  </table></div>
+
+  <div class="callout"><span class="icon">🏆</span>La ecuación completa: <strong>CREDIBILIDAD TÉCNICA</strong> (ingenieros) + <strong>RELACIÓN PERSONAL</strong> (familia) + <strong>RED B2B</strong> (contactos) + <strong>CAPITAL</strong> (aguante) + <strong>AMBICIÓN REGIONAL</strong> = Combinación que ningún otro distribuidor tiene en Argentina ahora mismo.</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ S08 -->
+<div class="section" id="s08">
+  <div class="section-header">
+    <span class="section-num">08</span>
+    <span class="section-title">Estrategia Comercial 2025–2028</span>
+  </div>
+
+  <h2>8.1 Fases de la Estrategia</h2>
+
+  <div class="phase-card">
+    <div class="phase-header" style="background:#EBF5FB">FASE 1 &nbsp;·&nbsp; 2025 — H1 (Meses 1–6) &nbsp;·&nbsp; Objetivo: Cerrar 1–2 ventas en Argentina. Validar modelo.</div>
+    <div class="phase-body">
+      <div class="phase-actions">
+        <ul class="bullet-list">
+          <li>Activar los 2 leads existentes (contactar ASAP, agendar reuniones)</li>
+          <li>Completar training técnico DELIE</li>
+          <li>Prospectar red de contactos directa (mínimo 20 empresas)</li>
+          <li>Optimizar LinkedIn y publicar 3x/semana (gratis)</li>
+          <li>Documentar TODO el proceso (fotos, videos, aprendizajes)</li>
+        </ul>
+      </div>
+      <div class="phase-kpi">KPI: Meta: 1–2 ventas cerradas. USD 200k–400k.</div>
+    </div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-header" style="background:#EAFAF1">FASE 2 &nbsp;·&nbsp; 2025 — H2 (Meses 7–12) &nbsp;·&nbsp; Objetivo: Escalar prospección. Consolidar presencia Argentina.</div>
+    <div class="phase-body">
+      <div class="phase-actions">
+        <ul class="bullet-list">
+          <li>Prospección activa: 20–30 llamadas/semana, LinkedIn outreach</li>
+          <li>Documentar y publicar primer caso de éxito</li>
+          <li>Asistir a ferias: Expo Logística, eventos ecommerce</li>
+          <li>Exploración Uruguay (viaje inicial)</li>
+          <li>Evaluar primera contratación si volumen justifica</li>
+        </ul>
+      </div>
+      <div class="phase-kpi">KPI: Meta: 3–4 ventas adicionales. USD 600k–900k acumulado.</div>
+    </div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-header" style="background:#FEF9E7">FASE 3 &nbsp;·&nbsp; 2026 — Expansión Regional &nbsp;·&nbsp; Objetivo: Entrada Uruguay y Paraguay. Escalar Argentina.</div>
+    <div class="phase-body">
+      <div class="phase-actions">
+        <ul class="bullet-list">
+          <li>Renegociar con DELIE (exclusividad Uruguay+Paraguay + mejora comisión)</li>
+          <li>Viajes a Montevideo y Asunción (reuniones, prospectos)</li>
+          <li>Primer empleado (vendedor junior)</li>
+          <li>Preparar estrategia entrada Chile (investigación profunda)</li>
+          <li>Pipeline 20+ prospectos activos simultáneos</li>
+        </ul>
+      </div>
+      <div class="phase-kpi">KPI: Meta: 8–12 ventas año 2. USD 1.5M–2.5M.</div>
+    </div>
+  </div>
+
+  <div class="phase-card">
+    <div class="phase-header" style="background:#F5EEF8">FASE 4 &nbsp;·&nbsp; 2027+ — Marca Personal y Escala &nbsp;·&nbsp; Objetivo: Posición dominante Cono Sur. Activar marca personal.</div>
+    <div class="phase-body">
+      <div class="phase-actions">
+        <ul class="bullet-list">
+          <li>Lanzamiento marca personal (TikTok, Instagram, YouTube)</li>
+          <li>Programa de impulso/premios a personas que se esfuerzan</li>
+          <li>Entrada Chile + exploración Colombia/Perú</li>
+          <li>Equipo de 3–5 personas</li>
+          <li>Distribuidora formal establecida</li>
+        </ul>
+      </div>
+      <div class="phase-kpi">KPI: Meta: USD 3M–5M. Referente ASRS en Cono Sur.</div>
+    </div>
+  </div>
+
+  <h2>8.2 Canales de Prospección</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Canal</th><th>Costo</th><th>Alcance</th><th>Calidad Lead</th><th>Prioridad</th></tr>
+    <tr class="highlight"><td><strong>Red de contactos directa (familia, amigos, conocidos)</strong></td><td>CERO</td><td>Limitado</td><td>MUY ALTA</td><td>🔥 1°</td></tr>
+    <tr><td><strong>LinkedIn outreach (mensajes personalizados)</strong></td><td>CERO</td><td>Alto</td><td>Alta</td><td>🔥 2°</td></tr>
+    <tr class="highlight"><td><strong>Leads provistos por DELIE (2 clientes iniciales)</strong></td><td>CERO</td><td>Puntual</td><td>MUY ALTA</td><td>🔥 1°</td></tr>
+    <tr><td>Ferias y eventos logísticos</td><td>Medio</td><td>Medio</td><td>Alta</td><td>3°</td></tr>
+    <tr><td>Llamadas en frío (directorios industriales)</td><td>Bajo</td><td>Alto</td><td>Media</td><td>4°</td></tr>
+    <tr><td>Email outreach (campañas personalizadas)</td><td>Bajo</td><td>Muy alto</td><td>Media-Baja</td><td>5°</td></tr>
+  </table></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ S09 -->
+<div class="section" id="s09">
+  <div class="section-header">
+    <span class="section-num">09</span>
+    <span class="section-title">Estrategia de Negociación — Reunión con DELIE</span>
+  </div>
+
+  <div class="callout"><span class="icon">🎯</span><strong>MENTALIDAD CLAVE:</strong> No van a convencer a nadie. Ya los eligieron. La reunión del martes es para definir los TÉRMINOS de una partnership que DELIE ya decidió hacer. Entren como socios, no como postulantes.</div>
+
+  <h2>9.1 Objetivos de la Reunión</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Categoría</th><th>Objetivo</th><th>Estrategia</th></tr>
+    <tr style="background:#FDEDEC"><td><strong style="color:var(--red)">MUST HAVE (innegociable)</strong></td><td>Exclusividad Argentina · Soporte técnico total · Training pre-venta · Materiales en español · Contrato por escrito</td><td>No firmar sin esto. Si no hay exclusividad, no hay acuerdo.</td></tr>
+    <tr style="background:#FEF9E7"><td><strong style="color:#B7770D">WANT TO HAVE (negociar fuerte)</strong></td><td>Exclusividad Uruguay + Paraguay desde Día 1 · Comisión 4% o escalonada · Derecho 1a opción Chile · Leads entrantes asignados</td><td>Argumento: "Tenemos red en los 3 países. Operamos como región integrada (Mercosur)."</td></tr>
+    <tr style="background:#EAFAF1"><td><strong style="color:var(--green)">NICE TO HAVE (intentar siempre)</strong></td><td>Budget marketing compartido · Ingeniero DELIE para clientes grandes · Muestras/demos · Viaje a China para training</td><td>Si lo dan, perfecto. Si no, no es bloqueante.</td></tr>
+  </table></div>
+
+  <h2>9.2 Estructura de Comisión — Propuesta</h2>
+  <p>El 3% no está cerrado — todo es negociable. Estas son las tres opciones a plantear, de más favorable a menos favorable:</p>
+  <div class="tbl-wrap"><table>
+    <tr><th>Opción</th><th>Estructura</th><th>Lógica</th></tr>
+    <tr style="background:#EAFAF1"><td><strong style="color:var(--green)">A (Preferida)</strong></td><td>Leads DELIE: 3% · Clientes propios: 5% · Bonus si superan USD 1M/año: +0.5%</td><td>Alinea incentivos. Más trabajamos, más ganamos.</td></tr>
+    <tr style="background:#FEF9E7"><td><strong style="color:#B7770D">B (Alternativa)</strong></td><td>USD 0–200k: 4% · USD 200k–500k: 3.5% · USD 500k+: 3%</td><td>Escalonado por ticket. Las ventas chicas (más trabajo) pagan más.</td></tr>
+    <tr><td><strong>C (Conservadora)</strong></td><td>3% fijo año 1 con cláusula de revisión: "Después de X ventas/meses, renegociamos."</td><td>Acepta el 3% pero garantiza por escrito la renegociación.</td></tr>
+  </table></div>
+
+  <h2>9.3 Frases Clave para la Reunión</h2>
+  <div class="phrase-context">Para mostrar ambición:</div>
+  <div class="phrase-quote">"No queremos solo ser distribuidores. Queremos construir DELIE en Latinoamérica junto a ustedes. Argentina es el punto de partida."</div>
+  <div class="phrase-context">Para negociar territorio:</div>
+  <div class="phrase-quote">"Tenemos red en Argentina, Uruguay y Paraguay. Operamos regionalmente. ¿Podemos discutir exclusividad para los tres desde el inicio?"</div>
+  <div class="phrase-context">Para negociar comisión:</div>
+  <div class="phrase-quote">"Entendemos el 3% como base. ¿Hay espacio para incentivar clientes que nosotros traemos vs. leads que proveen ustedes?"</div>
+  <div class="phrase-context">Para mostrar compromiso:</div>
+  <div class="phrase-quote">"Estamos dispuestos a invertir nuestro tiempo y capital. Queremos que nos vaya bien a todos."</div>
+  <div class="phrase-context">Para pedir claridad en soporte:</div>
+  <div class="phrase-quote">"Para representarlos de la mejor manera, necesitamos entender exactamente qué soporte técnico podemos prometer a los clientes."</div>
+
+  <h2>9.4 Walk-Away Points — Condiciones que NO Aceptarían</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th style="background:var(--red)">❌ Condición Inaceptable</th><th style="background:var(--red)">Qué Hacer</th></tr>
+    <tr><td>Comisión menor a 2% sin justificación clara</td><td>Expresar preocupación. Pedir tiempo para consultar. No romper la relación.</td></tr>
+    <tr><td>Mínimos de venta imposibles (ej: USD 5M año 1)</td><td>Proponer mínimos realistas basados en el mercado argentino.</td></tr>
+    <tr><td>Cero exclusividad territorial en Argentina</td><td>Sin exclusividad, la inversión no se justifica. Punto no negociable.</td></tr>
+    <tr><td>Cero soporte técnico (todo por cuenta propia)</td><td>El modelo no funciona sin soporte de diseño y cotización de DELIE.</td></tr>
+    <tr><td>Condiciones abusivas en el contrato</td><td>Pedir 24–48hs para revisar con familia/abogado. NUNCA firmar en la reunión.</td></tr>
+  </table></div>
+
+  <h2>9.5 Flujo de la Reunión (Timeline Sugerido)</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Bloque</th><th>Duración</th><th>Contenido</th></tr>
+    <tr><td>Apertura</td><td>5 min</td><td>Agradecimiento + relación personal + set the tone</td></tr>
+    <tr><td>Presentación de ustedes</td><td>10 min</td><td>Quiénes son, por qué DELIE, visión regional</td></tr>
+    <tr><td>Business Plan</td><td>15 min</td><td>Mercado, estrategia, proyecciones conservadoras</td></tr>
+    <tr><td>Propuesta de DELIE</td><td>15 min</td><td>Escuchar atentamente, tomar notas detalladas</td></tr>
+    <tr><td>Preguntas de clarificación</td><td>10 min</td><td>Las 10 preguntas críticas de la lista</td></tr>
+    <tr><td>Negociación</td><td>20–30 min</td><td>Territorio, comisión, soporte</td></tr>
+    <tr><td>Cierre y próximos pasos</td><td>10 min</td><td>Timeline, documentación, next actions</td></tr>
+    <tr class="highlight-blue"><td><strong>TOTAL</strong></td><td><strong>~85–95 min</strong></td><td></td></tr>
+  </table></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ S10 -->
+<div class="section" id="s10">
+  <div class="section-header">
+    <span class="section-num">10</span>
+    <span class="section-title">Proyección Financiera</span>
+  </div>
+
+  <h2>10.1 Supuestos Base</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Variable</th><th>Valor Conservador</th><th>Valor Moderado</th><th>Valor Agresivo</th></tr>
+    <tr><td>Ticket promedio/venta</td><td>USD 120k</td><td>USD 200k</td><td>USD 320k</td></tr>
+    <tr><td>Comisión base</td><td>3%</td><td>3%</td><td>3.5%</td></tr>
+    <tr><td>Ventas cerradas año 1</td><td>3</td><td>5</td><td>8</td></tr>
+    <tr><td>Ciclo de venta promedio</td><td>14 meses</td><td>12 meses</td><td>10 meses</td></tr>
+    <tr><td>Gastos operativos año 1</td><td>USD 5k</td><td>USD 8k</td><td>USD 12k</td></tr>
+  </table></div>
+
+  <h2>10.2 Año 1 (2025) — Detalle por Escenario</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Concepto</th><th>Conservador</th><th>Moderado</th><th>Agresivo</th></tr>
+    <tr><td>Ventas totales</td><td>USD 360k</td><td>USD 1M</td><td>USD 2.56M</td></tr>
+    <tr><td>Ingresos brutos (comisión)</td><td>USD 10.8k</td><td>USD 30k</td><td>USD 89.6k</td></tr>
+    <tr><td>Gastos operativos</td><td>USD 5k</td><td>USD 8k</td><td>USD 12k</td></tr>
+    <tr class="highlight"><td><strong>NETO TOTAL</strong></td><td><strong>USD 5.8k</strong></td><td><strong>USD 22k</strong></td><td><strong>USD 77.6k</strong></td></tr>
+    <tr class="total-row"><td><strong>NETO POR PERSONA</strong></td><td><strong>USD 2.9k</strong></td><td><strong>USD 11k</strong></td><td><strong>USD 38.8k</strong></td></tr>
+  </table></div>
+
+  <h2>10.3 Proyección 5 Años (Escenario Moderado)</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Año</th><th>Período</th><th>Ventas Totales</th><th>Comisión</th><th>Ingresos Brutos</th><th>Gastos</th><th>Neto Total</th><th>Neto/Persona</th></tr>
+    <tr><td>1</td><td>2025</td><td>USD 1M</td><td>3%</td><td>USD 30k</td><td>USD 8k</td><td>USD 22k</td><td>USD 11k</td></tr>
+    <tr><td>2</td><td>2026</td><td>USD 2M</td><td>3%</td><td>USD 60k</td><td>USD 35k</td><td>USD 25k</td><td>USD 12.5k</td></tr>
+    <tr class="highlight-gold"><td>3</td><td>2027</td><td>USD 3.5M</td><td>3.5%*</td><td>USD 122k</td><td>USD 86k</td><td>USD 36k</td><td>USD 18k</td></tr>
+    <tr><td>4</td><td>2028</td><td>USD 5M</td><td>4%*</td><td>USD 200k</td><td>USD 120k</td><td>USD 80k</td><td>USD 40k</td></tr>
+    <tr class="highlight"><td>5</td><td>2029</td><td>USD 8M</td><td>4%*</td><td>USD 320k</td><td>USD 180k</td><td>USD 140k</td><td>USD 70k</td></tr>
+  </table></div>
+  <p style="font-size:11px;color:var(--muted)">* Comisión renegociada tras demostrar resultados. Gastos año 2+ incluyen empleados y expansión regional. A partir del año 3, estructura cambia a empresa formal.</p>
+
+  <h2>10.4 Breakeven Analysis</h2>
+  <div class="info-box green">
+    <strong>¿Cuántas ventas necesitan para cubrir gastos del año 1?</strong><br><br>
+    Con comisión 3% y ticket promedio USD 200k → comisión por venta = <strong>USD 6,000</strong><br>
+    Gastos estimados año 1: <strong>USD 8,000</strong><br><br>
+    <strong>BREAKEVEN: 2 ventas (USD 400k en ventas totales)</strong><br><br>
+    Los 2 leads que DELIE ya tiene = los solos que necesitan para cubrir gastos año 1.
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ S11 -->
+<div class="section" id="s11">
+  <div class="section-header">
+    <span class="section-num">11</span>
+    <span class="section-title">Integración con Marca Personal (2027+)</span>
+  </div>
+
+  <h2>11.1 La Idea Central</h2>
+  <div class="callout" style="font-style:italic; font-size:15px"><span class="icon">💡</span>"Soy el pibe que PUDO, que está PUDIENDO, y que quiere que vos también PUEDAS" + te vendo los sistemas que a mí me funcionaron para lograrlo.</div>
+  <p>Esta no es una idea de marketing. Nace de tres cosas simultáneas: <strong>gratitud genuina, valores propios, y estrategia inteligente</strong>. Y justamente por eso funciona — porque no es artificial.</p>
+
+  <h2>11.2 Por Qué 2027 es el Momento Perfecto</h2>
+  <ul class="bullet-list">
+    <li class="green"><strong>✅ Ya tenés experiencia real:</strong> 2 años en ASRS y ecommerce. No estás hablando de teoría.</li>
+    <li class="green"><strong>✅ Ya tenés casos de éxito:</strong> Clientes concretos que puedes mostrar.</li>
+    <li class="green"><strong>✅ Ya tenés flujo de caja:</strong> Podés invertir USD 800–1,200/mes sin que duela.</li>
+    <li class="green"><strong>✅ Ya te graduaste:</strong> El título de ingeniero suma autoridad técnica.</li>
+    <li class="green"><strong>✅ Ya tenés algo de nombre:</strong> En tu nicho ya te conocen. No arrancás de cero.</li>
+  </ul>
+
+  <h2>11.3 Identidad de Marca</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Dimensión</th><th>Descripción</th></tr>
+    <tr><td><strong>Identidad central</strong></td><td>Joven ingeniero que construyó negocios reales (ASRS + ecommerce internacional) y ahora impulsa a otros a hacer lo mismo.</td></tr>
+    <tr><td><strong>Pilares de contenido</strong></td><td>1. Behind the Scenes ASRS (30%) — "Así vendí un sistema de USD 500k"<br>2. Ecommerce e Importación (20%) — "Así importé mi primer contenedor"<br>3. Mentalidad y construcción (20%) — Lo que aprendí arrancando a los 22<br>4. Programa de Impulso (30%) — EL DIFERENCIADOR BRUTAL</td></tr>
+    <tr style="background:#FEF9E7"><td><strong style="color:var(--gold)">EL DIFERENCIADOR</strong></td><td>El PROGRAMA DE IMPULSO: no son sorteos al azar. Son reconocimientos al esfuerzo. Premio útil (laptop, voucher supermercado) a personas que trabajen Y estudien. Serie documental en TikTok: del anuncio al seguimiento al ganador.</td></tr>
+    <tr><td><strong>Plataformas</strong></td><td>TikTok (alcance masivo) · Instagram (visual, comunidad) · YouTube (profundidad) · LinkedIn (clientes B2B de ASRS)</td></tr>
+  </table></div>
+
+  <h2>11.4 El Programa de Impulso — Detalle</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th style="background:var(--gold);color:var(--navy)">Elemento</th><th style="background:var(--gold);color:var(--navy)">Detalle</th></tr>
+    <tr><td><strong>Premio típico</strong></td><td>Laptop/notebook · Voucher supermercado USD 500+ · Herramientas de trabajo</td></tr>
+    <tr><td><strong>Requisitos para participar</strong></td><td>Trabajar Y estudiar al mismo tiempo · Demostrar esfuerzo real · Explicar para qué lo usaría</td></tr>
+    <tr><td><strong>Formato de contenido</strong></td><td>Serie de 8–12 videos: Anuncio → Postulaciones → Finalistas → Historias → Ganador → Entrega</td></tr>
+    <tr><td><strong>Frecuencia</strong></td><td>2027: 4 impulsos/año (USD 500–800 c/u = USD 2k–3.2k/año)<br>2028: 12 impulsos/año (USD 6k–12k/año)</td></tr>
+    <tr><td><strong>ROI esperado</strong></td><td>No es solo el impacto. Cada ciclo genera 8–12 videos virales, comunidad, leads inbound, y reputación que potencia ventas ASRS.</td></tr>
+  </table></div>
+
+  <h2>11.5 Sinergia con ASRS (El Loop Virtuoso)</h2>
+  <div class="loop-box">
+    MARCA PERSONAL POTENTE → Clientes ASRS te googlea → Ven tus redes → Confían más rápido → Ciclo de venta más corto → MÁS VENTAS ASRS → Más ingresos → Más inversión en contenido e impulsos → <strong>MARCA MÁS POTENTE</strong>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ S12 -->
+<div class="section" id="s12">
+  <div class="section-header">
+    <span class="section-num">12</span>
+    <span class="section-title">Riesgos y Mitigación</span>
+  </div>
+
+  <div class="risk-card">
+    <div class="risk-header">
+      <div class="risk-id">R1</div>
+      <div class="risk-title">Falta de experiencia comercial B2B</div>
+      <div class="risk-prob" style="color:var(--red)">Probabilidad: Alta</div>
+      <div class="risk-impact" style="color:var(--gold)">Impacto: Medio</div>
+    </div>
+    <div class="risk-mit"><ul><li>Respaldo familiar con experiencia: mentores revisan propuestas antes de enviar</li><li>Training completo de DELIE antes de primer cliente</li><li>Empezar con los 2 leads calificados (modo fácil para aprender)</li><li>Documentar todo y crear playbook propio</li></ul></div>
+  </div>
+
+  <div class="risk-card">
+    <div class="risk-header">
+      <div class="risk-id">R2</div>
+      <div class="risk-title">Tiempo limitado (5to año de ingeniería)</div>
+      <div class="risk-prob" style="color:var(--red)">Probabilidad: Alta</div>
+      <div class="risk-impact" style="color:var(--gold)">Impacto: Medio</div>
+    </div>
+    <div class="risk-mit"><ul><li>División clara: uno en prospección, otro en soporte técnico</li><li>Tu amigo en pasantías (más disponibilidad) compensa picos</li><li>En 9 meses se gradúan → año 2 con full time disponible</li><li>Templates y procesos para ser eficientes con menos horas</li></ul></div>
+  </div>
+
+  <div class="risk-card">
+    <div class="risk-header">
+      <div class="risk-id">R3</div>
+      <div class="risk-title">Ciclo de venta muy largo (8–18 meses)</div>
+      <div class="risk-prob" style="color:var(--red)">Probabilidad: Alta</div>
+      <div class="risk-impact" style="color:var(--red)">Impacto: Alto</div>
+    </div>
+    <div class="risk-mit"><ul><li>Capital disponible: aguantan 12+ meses sin ingresos</li><li>Pipeline múltiple: 10–20 prospectos en distintas fases simultáneas</li><li>Expectativas realistas: mentalidad de maratón, no sprint</li><li>Ecommerce como flujo paralelo que reduce la ansiedad financiera</li></ul></div>
+  </div>
+
+  <div class="risk-card">
+    <div class="risk-header">
+      <div class="risk-id">R4</div>
+      <div class="risk-title">Competencia con marcas establecidas (Mecalux)</div>
+      <div class="risk-prob" style="color:var(--red)">Probabilidad: Alta</div>
+      <div class="risk-impact" style="color:var(--gold)">Impacto: Medio</div>
+    </div>
+    <div class="risk-mit"><ul><li>Segmentación: ticket USD 100k–800k (sweet spot donde Mecalux cobra más)</li><li>Precio 30–40% más bajo que Mecalux</li><li>Servicio ultra-personalizado vs. burocracia corporativa</li><li>Casos de éxito propios desde el primer año</li></ul></div>
+  </div>
+
+  <div class="risk-card">
+    <div class="risk-header">
+      <div class="risk-id">R5</div>
+      <div class="risk-title">Conflicto entre socios</div>
+      <div class="risk-prob" style="color:var(--green)">Probabilidad: Baja</div>
+      <div class="risk-impact" style="color:var(--red)">Impacto: Muy Alto</div>
+    </div>
+    <div class="risk-mit"><ul><li>Acuerdo de socios por escrito: roles, ingresos, mecanismo de salida</li><li>Reuniones semanales: hablar problemas antes que se pudran</li><li>Familia como mediadores si escala</li><li>Expectativas alineadas desde el inicio (ya lo están)</li></ul></div>
+  </div>
+
+  <div class="risk-card">
+    <div class="risk-header">
+      <div class="risk-id">R6</div>
+      <div class="risk-title">Cambio político-económico desfavorable en Argentina</div>
+      <div class="risk-prob" style="color:var(--gold)">Probabilidad: Media</div>
+      <div class="risk-impact" style="color:var(--red)">Impacto: Alto</div>
+    </div>
+    <div class="risk-mit"><ul><li>Diversificación geográfica: Uruguay y Paraguay como plan B</li><li>Estructura lean: sin oficina ni empleados fijos en año 1</li><li>Enfoque en sectores resilientes: alimentos, logística, farmacéutica</li></ul></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ S13 -->
+<div class="section" id="s13">
+  <div class="section-header">
+    <span class="section-num">13</span>
+    <span class="section-title">Roadmap Ejecutivo</span>
+  </div>
+
+  <h2>13.1 Próximas 2 Semanas — Preparación Reunión DELIE</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Semana</th><th>Días</th><th>Tarea</th><th>Responsable</th></tr>
+    <tr><td>Semana 1</td><td>Lun–Mar</td><td>Leer Business Brain completo + discutir con tu amigo + definir objetivos reunión</td><td>Ambos</td></tr>
+    <tr><td>Semana 1</td><td>Mié–Jue</td><td>Armar presentación personal (5 slides) + 1er borrador Business Plan</td><td>Ambos</td></tr>
+    <tr><td>Semana 1</td><td>Vie–Dom</td><td>Revisar con familia + ajustar docs + roleplay de negociación</td><td>Ambos + Familia</td></tr>
+    <tr><td>Semana 2</td><td>Lun</td><td>Enviar documentos a DELIE (3–4 días antes de la reunión)</td><td>Tu amigo</td></tr>
+    <tr><td>Semana 2</td><td>Mar–Mié</td><td>Preparar respuestas a objeciones + practicar presentación</td><td>Ambos</td></tr>
+    <tr><td>Semana 2</td><td>Jue–Dom</td><td>Descansar. Repasar mentalmente. Dormir bien.</td><td>Ambos</td></tr>
+    <tr class="highlight-gold"><td><strong>MARTES</strong></td><td><strong>REUNIÓN</strong></td><td><strong>EJECUTAR. Tomar notas. NO firmar sin leer. Pedir 24–48hs para contrato.</strong></td><td><strong>Ambos</strong></td></tr>
+  </table></div>
+
+  <h2>13.2 Roadmap 2025–2029</h2>
+
+  <div class="roadmap-card" style="border: 2px solid var(--accent)">
+    <div class="roadmap-year" style="color:var(--accent); background:#EBF5FB; border-color:var(--accent)">2025</div>
+    <div class="roadmap-content" style="background:#EBF5FB">
+      <h3 style="color:var(--navy)">Fundación</h3>
+      <ul><li>Q1: Firmar con DELIE. Training. Activar 2 leads.</li><li>Q2: Cerrar 1–2 ventas. Prospectar 20+ empresas.</li><li>Q3–Q4: Escalar pipeline. 3–5 ventas año 1.</li><li><strong>META: USD 500k–1.2M en ventas. Graduación.</strong></li></ul>
+    </div>
+  </div>
+
+  <div class="roadmap-card" style="border: 2px solid var(--green)">
+    <div class="roadmap-year" style="color:var(--green); background:#EAFAF1; border-color:var(--green)">2026</div>
+    <div class="roadmap-content" style="background:#EAFAF1">
+      <h3 style="color:var(--navy)">Expansión Regional</h3>
+      <ul><li>Q1: Renegociar territorio (URY + PRY) y comisión.</li><li>Q2: Entrada Uruguay. Primer empleado si justifica.</li><li>Q3: Consolidar pipeline 20+ prospectos.</li><li>Q4: Exploración Paraguay. Prep Chile.</li><li><strong>META: USD 1.5M–2.5M. 8–12 ventas.</strong></li></ul>
+    </div>
+  </div>
+
+  <div class="roadmap-card" style="border: 2px solid var(--gold)">
+    <div class="roadmap-year" style="color:var(--gold); background:#FEF9E7; border-color:var(--gold)">2027</div>
+    <div class="roadmap-content" style="background:#FEF9E7">
+      <h3 style="color:var(--navy)">Consolidación + Marca Personal</h3>
+      <ul><li>Q1: LANZAMIENTO marca personal. Primer impulso.</li><li>Q2: Entrada Chile. Contenido 5x/semana.</li><li>Q3: Equipo 3–5 personas. Oficina pequeña.</li><li>Q4: 10k–20k seguidores. Leads inbound.</li><li><strong>META: USD 3M–5M. Referente ASRS Cono Sur.</strong></li></ul>
+    </div>
+  </div>
+
+  <div class="roadmap-card" style="border: 2px solid var(--navy)">
+    <div class="roadmap-year" style="color:var(--navy); background:#F0F3F4; border-color:var(--navy); font-size:22px">2028–<br>2029</div>
+    <div class="roadmap-content" style="background:#F0F3F4">
+      <h3 style="color:var(--navy)">Dominio Regional</h3>
+      <ul><li>Distribuidora formal establecida.</li><li>Colombia / Perú en exploración.</li><li>100k+ seguidores. Programas de impulso escalados.</li><li>Múltiples fuentes de ingreso.</li><li><strong>META: USD 8M–12M. USD 70k–200k neto/persona.</strong></li></ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ S14 -->
+<div class="section" id="s14">
+  <div class="section-header">
+    <span class="section-num">14</span>
+    <span class="section-title">KPIs y Métricas</span>
+  </div>
+
+  <h2>14.1 Métricas Comerciales — Dashboard Mensual</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Métrica</th><th>Objetivo Año 1</th><th>Objetivo Año 2</th><th>Objetivo Año 3</th></tr>
+    <tr><td>Prospectos contactados/mes</td><td>10</td><td>20</td><td>30+</td></tr>
+    <tr><td>Reuniones agendadas/mes</td><td>3</td><td>6</td><td>10</td></tr>
+    <tr><td>Propuestas enviadas/trimestre</td><td>2</td><td>5</td><td>8</td></tr>
+    <tr><td>Ventas cerradas/año</td><td>3–5</td><td>8–12</td><td>15–20</td></tr>
+    <tr><td>Valor total ventas/año</td><td>USD 500k–1.2M</td><td>USD 1.5M–2.5M</td><td>USD 3M–5M</td></tr>
+    <tr><td>Ticket promedio</td><td>USD 150k</td><td>USD 200k</td><td>USD 250k</td></tr>
+    <tr><td>Tasa de conversión (prop→venta)</td><td>15–20%</td><td>20–25%</td><td>25–30%</td></tr>
+    <tr><td>Tiempo promedio de cierre</td><td>14 meses</td><td>12 meses</td><td>10 meses</td></tr>
+  </table></div>
+
+  <h2>14.2 Métricas de Marca Personal (2027+)</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>Métrica</th><th>Año 1 (2027)</th><th>Año 2 (2028)</th><th>Año 3 (2029)</th></tr>
+    <tr><td>Seguidores totales (todas plataformas)</td><td>5k–15k</td><td>20k–50k</td><td>50k–150k</td></tr>
+    <tr><td>Engagement rate</td><td>5–8%</td><td>4–7%</td><td>3–6%</td></tr>
+    <tr><td>Personas impulsadas/año</td><td>4</td><td>12</td><td>24+</td></tr>
+    <tr><td>Inversión total (impulsos + producción)</td><td>USD 5.4k</td><td>USD 10k</td><td>USD 18k</td></tr>
+    <tr><td>Leads inbound ASRS por marca</td><td>2–3/mes</td><td>5–8/mes</td><td>10–15/mes</td></tr>
+    <tr><td>Ventas ASRS atribuibles a marca</td><td>1–2</td><td>3–5</td><td>6–10</td></tr>
+    <tr class="highlight"><td>ROI marca personal</td><td>100–200%</td><td>180–300%</td><td>200–330%</td></tr>
+  </table></div>
+
+  <h2>14.3 Métricas de Expansión Regional</h2>
+  <div class="tbl-wrap"><table>
+    <tr><th>País</th><th>Entrada</th><th>1a Venta</th><th>Ventas Año 1 en País</th><th>Meta Año 3 en País</th></tr>
+    <tr><td><strong>Argentina</strong></td><td>Q1 2025</td><td>Q2–Q3 2025</td><td>3–5 ventas</td><td>10–15 ventas</td></tr>
+    <tr><td>Uruguay</td><td>Q1 2026</td><td>Q3 2026</td><td>1–2 ventas</td><td>3–5 ventas</td></tr>
+    <tr><td>Paraguay</td><td>Q3 2026</td><td>Q1 2027</td><td>1 venta</td><td>2–3 ventas</td></tr>
+    <tr><td>Chile</td><td>Q1 2027</td><td>Q3 2027</td><td>1–2 ventas</td><td>5–8 ventas</td></tr>
+    <tr><td>Colombia / Perú</td><td>2028+</td><td>2029</td><td>TBD</td><td>TBD</td></tr>
+  </table></div>
+
+  <div class="callout"><span class="icon">🎯</span><strong>KPI más importante del año 1:</strong> Cerrar AL MENOS 1 venta en los primeros 6 meses. Eso valida el modelo, genera el primer caso de éxito, y da confianza a DELIE de que apostaron bien. Todo lo demás viene después.</div>
+
+  <div style="border-top: 2px solid var(--gold); margin: 28px 0 0; padding-top: 24px">
+    <h2 style="border-bottom:none">Reflexión Final</h2>
+    <p>La oportunidad que tenés adelante no es común. Es la convergencia de cinco cosas que rara vez suceden al mismo tiempo: el <strong>producto correcto</strong> (ASRS, boom de demanda), el <strong>timing correcto</strong> (giro político regional, ventana 2025–2027), el <strong>mercado correcto</strong> (LATAM desatendido por DELIE), los <strong>activos correctos</strong> (relación personal, ingeniería, red, capital), y la <strong>mentalidad correcta</strong> (paciencia estratégica, visión de largo plazo).</p>
+    <p>En 5 años, si ejecutás con disciplina, vas a tener dos negocios sólidos, experiencia internacional, una marca personal que abre puertas, y una historia de la que estar orgulloso. No porque fue fácil, sino porque construiste algo real.</p>
+  </div>
+
+  <div class="doc-footer">
+    Business Brain · DELIE LATAM · Marzo 2025 · CONFIDENCIAL — USO INTERNO
+  </div>
+</div>
+
+</div><!-- /container -->
+
+</body>
+</html>
