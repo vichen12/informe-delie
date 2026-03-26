@@ -266,6 +266,18 @@
   .sector-body { padding: 16px; font-size: 12.5px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .sector-col strong { display: block; font-size: 10px; color: var(--muted); text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px; }
 
+  /* COUNTRY CARDS */
+  .country-card { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin: 10px 0; }
+  .country-col { padding: 16px; font-size: 12.5px; }
+  .country-col:first-child { border-right: 1px solid var(--border); background: #FAFCFF; }
+  .country-col:last-child { background: white; }
+
+  /* TREND CARDS */
+  .trend-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 12px 0 20px; }
+  .trend-card { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .trend-card-h { background: var(--navy); color: white; font-weight: 700; font-size: 12px; padding: 10px 14px; }
+  .trend-card-b { padding: 12px 14px; font-size: 12.5px; line-height: 1.6; background: white; }
+
   /* COMP CARDS */
   .comp { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin: 10px 0; }
   .comp-h { background: #F7FAFD; padding: 11px 14px; border-bottom: 1px solid var(--border); font-weight: 700; font-size: 13px; }
@@ -300,10 +312,10 @@
 
   /* BADGES */
   .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.3px; }
-  .bd-r { background: #FDF2F1; color: var(--red); }
-  .bd-g { background: #F0FAF4; color: var(--green); }
-  .bd-y { background: #FFF8E8; color: #9A6A00; }
-  .bd-b { background: var(--light-bg); color: var(--blue); }
+  .bd-r, .badge-red { background: #FDF2F1; color: var(--red); }
+  .bd-g, .badge-green { background: #F0FAF4; color: var(--green); }
+  .bd-y, .badge-yellow { background: #FFF8E8; color: #9A6A00; }
+  .bd-b, .badge-blue { background: var(--light-bg); color: var(--blue); }
 
   /* LOOP */
   .loop { background: var(--light-bg); border: 2px solid var(--accent); border-radius: 8px; padding: 20px 24px; text-align: center; font-weight: 700; font-size: 14px; color: var(--navy); margin: 14px 0; line-height: 2; }
@@ -339,7 +351,8 @@
   @media(max-width:700px){
     .metrics-strip,.mrow-4,.metrics-row{grid-template-columns:repeat(2,1fr);}
     .pillars,.sector-body,.phase-body,.risk-h{grid-template-columns:1fr;}
-    .rm-card{grid-template-columns:1fr;}
+    .rm-card,.country-card,.trend-grid{grid-template-columns:1fr;}
+    .trend-card{grid-column:span 1 !important;}
     .cover h1{font-size:32px;}
     .section{padding:24px 18px;}
     .section-header,.sh{margin:-24px -18px 22px;}
@@ -675,53 +688,53 @@
 
   <h2>4.1 Competidores — Perfiles Completos</h2>
 
-  <div class="comp-card">
-    <div class="comp-header"><h3 style="margin:0">Mecalux / Interlake Mecalux &nbsp;·&nbsp; España &nbsp;·&nbsp; Tier 2 &nbsp;&nbsp;<span class="badge badge-red"> AMENAZA ALTA</span></h3></div>
-    <div class="comp-body">
-      <div class="comp-label">Oficinas LATAM</div><div class="comp-value">Argentina (Buenos Aires - Villa Maipú) · Chile (Santiago - Vitacura) · Colombia (Bogotá) · Brasil · México</div>
-      <div class="comp-label">Productos</div><div class="comp-value">Racks industriales (core) + automatización ASRS + Pallet Shuttle</div>
-      <div class="comp-label">Precio</div><div class="comp-value">Medio-Alto</div>
-      <div class="comp-label">Debilidades</div><div class="comp-value">Automatización no es su core. Más rígidos. Precio mayor que DELIE.</div>
+  <div class="comp">
+    <div class="comp-h"><h3 style="margin:0">Mecalux / Interlake Mecalux &nbsp;·&nbsp; España &nbsp;·&nbsp; Tier 2 &nbsp;&nbsp;<span class="badge badge-red"> AMENAZA ALTA</span></h3></div>
+    <div class="comp-grid">
+      <div class="comp-lbl">Oficinas LATAM</div><div class="comp-val">Argentina (Buenos Aires - Villa Maipú) · Chile (Santiago - Vitacura) · Colombia (Bogotá) · Brasil · México</div>
+      <div class="comp-lbl">Productos</div><div class="comp-val">Racks industriales (core) + automatización ASRS + Pallet Shuttle</div>
+      <div class="comp-lbl">Precio</div><div class="comp-val">Medio-Alto</div>
+      <div class="comp-lbl">Debilidades</div><div class="comp-val">Automatización no es su core. Más rígidos. Precio mayor que DELIE.</div>
     </div>
   </div>
 
-  <div class="comp-card">
-    <div class="comp-header"><h3 style="margin:0">Dematic (Grupo KION) &nbsp;·&nbsp; USA/Alemania &nbsp;·&nbsp; Tier 1 &nbsp;&nbsp;<span class="badge badge-green">Amenaza Baja</span></h3></div>
-    <div class="comp-body">
-      <div class="comp-label">Oficinas LATAM</div><div class="comp-value">Chile (Santiago — cubre Argentina, Bolivia, Colombia, Ecuador, Paraguay, Perú, Uruguay)</div>
-      <div class="comp-label">Productos</div><div class="comp-value">AutoStore · Miniload · AMRs · Sistemas completos</div>
-      <div class="comp-label">Precio</div><div class="comp-value">Muy Alto</div>
-      <div class="comp-label">Debilidades</div><div class="comp-value">Solo grandes proyectos (USD 2M+). No atiende clientes medianos.</div>
+  <div class="comp">
+    <div class="comp-h"><h3 style="margin:0">Dematic (Grupo KION) &nbsp;·&nbsp; USA/Alemania &nbsp;·&nbsp; Tier 1 &nbsp;&nbsp;<span class="badge badge-green">Amenaza Baja</span></h3></div>
+    <div class="comp-grid">
+      <div class="comp-lbl">Oficinas LATAM</div><div class="comp-val">Chile (Santiago — cubre Argentina, Bolivia, Colombia, Ecuador, Paraguay, Perú, Uruguay)</div>
+      <div class="comp-lbl">Productos</div><div class="comp-val">AutoStore · Miniload · AMRs · Sistemas completos</div>
+      <div class="comp-lbl">Precio</div><div class="comp-val">Muy Alto</div>
+      <div class="comp-lbl">Debilidades</div><div class="comp-val">Solo grandes proyectos (USD 2M+). No atiende clientes medianos.</div>
     </div>
   </div>
 
-  <div class="comp-card">
-    <div class="comp-header"><h3 style="margin:0">Swisslog (Grupo KUKA) &nbsp;·&nbsp; Suiza/Alemania &nbsp;·&nbsp; Tier 1 &nbsp;&nbsp;<span class="badge badge-green">Amenaza Baja</span></h3></div>
-    <div class="comp-body">
-      <div class="comp-label">Oficinas LATAM</div><div class="comp-value">México (Tlalnepantla) — cobertura LATAM desde allí</div>
-      <div class="comp-label">Productos</div><div class="comp-value">PowerStore · AutoStore · SynQ software · Robots</div>
-      <div class="comp-label">Precio</div><div class="comp-value">Muy Alto</div>
-      <div class="comp-label">Debilidades</div><div class="comp-value">Enfoque en proyectos muy grandes. Poco interés en mercado medio.</div>
+  <div class="comp">
+    <div class="comp-h"><h3 style="margin:0">Swisslog (Grupo KUKA) &nbsp;·&nbsp; Suiza/Alemania &nbsp;·&nbsp; Tier 1 &nbsp;&nbsp;<span class="badge badge-green">Amenaza Baja</span></h3></div>
+    <div class="comp-grid">
+      <div class="comp-lbl">Oficinas LATAM</div><div class="comp-val">México (Tlalnepantla) — cobertura LATAM desde allí</div>
+      <div class="comp-lbl">Productos</div><div class="comp-val">PowerStore · AutoStore · SynQ software · Robots</div>
+      <div class="comp-lbl">Precio</div><div class="comp-val">Muy Alto</div>
+      <div class="comp-lbl">Debilidades</div><div class="comp-val">Enfoque en proyectos muy grandes. Poco interés en mercado medio.</div>
     </div>
   </div>
 
-  <div class="comp-card">
-    <div class="comp-header"><h3 style="margin:0">SSI Schäfer &nbsp;·&nbsp; Alemania &nbsp;·&nbsp; Tier 1 &nbsp;&nbsp;<span class="badge badge-green">Amenaza Baja-Media</span></h3></div>
-    <div class="comp-body">
-      <div class="comp-label">Oficinas LATAM</div><div class="comp-value">Brasil (establecida) + proyectos selectivos en Argentina/Chile</div>
-      <div class="comp-label">Productos</div><div class="comp-value">Sistemas completos · Miniload · Shuttle · WMS</div>
-      <div class="comp-label">Precio</div><div class="comp-value">Alto</div>
-      <div class="comp-label">Debilidades</div><div class="comp-value">Burocracia corporativa. Tiempos largos. Precio premium.</div>
+  <div class="comp">
+    <div class="comp-h"><h3 style="margin:0">SSI Schäfer &nbsp;·&nbsp; Alemania &nbsp;·&nbsp; Tier 1 &nbsp;&nbsp;<span class="badge badge-green">Amenaza Baja-Media</span></h3></div>
+    <div class="comp-grid">
+      <div class="comp-lbl">Oficinas LATAM</div><div class="comp-val">Brasil (establecida) + proyectos selectivos en Argentina/Chile</div>
+      <div class="comp-lbl">Productos</div><div class="comp-val">Sistemas completos · Miniload · Shuttle · WMS</div>
+      <div class="comp-lbl">Precio</div><div class="comp-val">Alto</div>
+      <div class="comp-lbl">Debilidades</div><div class="comp-val">Burocracia corporativa. Tiempos largos. Precio premium.</div>
     </div>
   </div>
 
-  <div class="comp-card">
-    <div class="comp-header"><h3 style="margin:0">Kardex &nbsp;·&nbsp; Suiza &nbsp;·&nbsp; Tier 1 &nbsp;&nbsp;<span class="badge badge-green">Amenaza Baja (nicho diferente)</span></h3></div>
-    <div class="comp-body">
-      <div class="comp-label">Oficinas LATAM</div><div class="comp-value">Distribuidores puntuales en región</div>
-      <div class="comp-label">Productos</div><div class="comp-value">Vertical Lift Modules (nicho específico)</div>
-      <div class="comp-label">Precio</div><div class="comp-value">Alto</div>
-      <div class="comp-label">Debilidades</div><div class="comp-value">Producto limitado a VLMs. No ofrece ASRS completo.</div>
+  <div class="comp">
+    <div class="comp-h"><h3 style="margin:0">Kardex &nbsp;·&nbsp; Suiza &nbsp;·&nbsp; Tier 1 &nbsp;&nbsp;<span class="badge badge-green">Amenaza Baja (nicho diferente)</span></h3></div>
+    <div class="comp-grid">
+      <div class="comp-lbl">Oficinas LATAM</div><div class="comp-val">Distribuidores puntuales en región</div>
+      <div class="comp-lbl">Productos</div><div class="comp-val">Vertical Lift Modules (nicho específico)</div>
+      <div class="comp-lbl">Precio</div><div class="comp-val">Alto</div>
+      <div class="comp-lbl">Debilidades</div><div class="comp-val">Producto limitado a VLMs. No ofrece ASRS completo.</div>
     </div>
   </div>
 
@@ -809,13 +822,28 @@
   </div>
 
   <h2>6.1 IA en Logística — Las 5 tendencias clave 2025–2030</h2>
-  <ul class="bullet-list" style="font-size:13.5px">
-    <li><strong>WMS con IA Predictiva:</strong> El software de gestión de almacenes ya no solo registra: predice. Forecasting de demanda automático, reabastecimiento inteligente, optimización de espacio en tiempo real.</li>
-    <li><strong>Mantenimiento Predictivo:</strong> Sensores IoT en todos los equipos + ML detectan fallas antes que ocurran. Reducción del downtime del 40–60%. Cero sorpresas.</li>
-    <li><strong>Robótica Colaborativa (AMRs + ASRS):</strong> Robots móviles autónomos trabajando junto a los sistemas ASRS. Dark warehouses: operación 24/7 sin humanos. Picking automático total.</li>
-    <li><strong>Micro-Fulfillment Centers:</strong> ASRS compactos para última milla urbana. Entrega same-day. Expansión masiva del ecommerce los impulsa.</li>
-    <li><strong>Integración End-to-End:</strong> Ya no es solo almacenamiento: toda la cadena logística automatizada desde recepción hasta despacho. ERP + WMS + ASRS + robótica en un solo sistema.</li>
-  </ul>
+  <div class="trend-grid">
+    <div class="trend-card">
+      <div class="trend-card-h">1 — WMS con IA Predictiva</div>
+      <div class="trend-card-b">El software de gestión de almacenes ya no solo registra: predice. Forecasting de demanda automático, reabastecimiento inteligente, optimización de espacio en tiempo real.</div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-card-h">2 — Mantenimiento Predictivo</div>
+      <div class="trend-card-b">Sensores IoT en todos los equipos + ML detectan fallas antes que ocurran. Reducción del downtime del 40–60%. Cero sorpresas.</div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-card-h">3 — Robótica Colaborativa (AMRs + ASRS)</div>
+      <div class="trend-card-b">Robots móviles autónomos trabajando junto a los sistemas ASRS. Dark warehouses: operación 24/7 sin humanos. Picking automático total.</div>
+    </div>
+    <div class="trend-card">
+      <div class="trend-card-h">4 — Micro-Fulfillment Centers</div>
+      <div class="trend-card-b">ASRS compactos para última milla urbana. Entrega same-day. Expansión masiva del ecommerce los impulsa.</div>
+    </div>
+    <div class="trend-card" style="grid-column: span 2;">
+      <div class="trend-card-h">5 — Integración End-to-End</div>
+      <div class="trend-card-b">Ya no es solo almacenamiento: toda la cadena logística automatizada desde recepción hasta despacho. ERP + WMS + ASRS + robótica en un solo sistema.</div>
+    </div>
+  </div>
 
   <h2>6.2 La Presión Competitiva que Vuelve ASRS Obligatorio</h2>
   <div class="info-box green">
@@ -839,24 +867,24 @@
   <h2>7.1 Por Qué DELIE Los Eligió a Ustedes</h2>
   <p>La chica de DELIE dijo literalmente: <strong>"Ya son parte de DELIE, solo queda la burocracia"</strong>. Esto no es un proceso de selección. Ya los eligieron. La reunión del martes es para formalizar los términos de una decisión tomada.</p>
 
-  <div class="reason-card">
-    <div class="reason-num">1</div>
+  <div class="reason">
+    <div class="reason-n">1</div>
     <div class="reason-body"><strong>Contacto familiar con China</strong> — El papá de tu amigo tiene relación directa. Esto NO es transaccional — es personal. En cultura china, la confianza personal vale más que cualquier CV.</div>
   </div>
-  <div class="reason-card">
-    <div class="reason-num">2</div>
+  <div class="reason">
+    <div class="reason-n">2</div>
     <div class="reason-body"><strong>Ingenieros en 5to año</strong> — Credibilidad técnica automática. Cuando un cliente pregunte algo técnico, no responden como vendedores: responden como ingenieros. Eso cierra ventas.</div>
   </div>
-  <div class="reason-card">
-    <div class="reason-num">3</div>
+  <div class="reason">
+    <div class="reason-n">3</div>
     <div class="reason-body"><strong>Jóvenes con hambre</strong> — Van a trabajar más duro que un distribuidor establecido. DELIE lo sabe. Un jugador hambriento que construye > un jugador cómodo que mantiene.</div>
   </div>
-  <div class="reason-card">
-    <div class="reason-num">4</div>
+  <div class="reason">
+    <div class="reason-n">4</div>
     <div class="reason-body"><strong>Visión regional</strong> — No quieren solo vender en Argentina. Quieren construir DELIE en LATAM. Eso alinea perfectamente con los objetivos de expansión de DELIE.</div>
   </div>
-  <div class="reason-card">
-    <div class="reason-num">5</div>
+  <div class="reason">
+    <div class="reason-n">5</div>
     <div class="reason-body"><strong>Bajo riesgo para DELIE</strong> — No tienen que poner oficina ni estructura. Si funciona, ganan región. Si no funciona, no perdieron nada. Riesgo asimétrico a favor de DELIE.</div>
   </div>
 
@@ -884,11 +912,11 @@
 
   <h2>8.1 Fases de la Estrategia</h2>
 
-  <div class="phase-card">
-    <div class="phase-header" style="background:
+  <div class="phase">
+    <div class="phase-h" style="background:
 #EBF5FB">FASE 1 &nbsp;·&nbsp; 2025 — H1 (Meses 1–6) &nbsp;·&nbsp; Objetivo: Cerrar 1–2 ventas en Argentina. Validar modelo.</div>
     <div class="phase-body">
-      <div class="phase-actions">
+      <div class="phase-acts">
         <ul class="bullet-list">
           <li>Activar los 2 leads existentes (contactar ASAP, agendar reuniones)</li>
           <li>Completar training técnico DELIE</li>
@@ -901,11 +929,11 @@
     </div>
   </div>
 
-  <div class="phase-card">
-    <div class="phase-header" style="background:
+  <div class="phase">
+    <div class="phase-h" style="background:
 #EAFAF1">FASE 2 &nbsp;·&nbsp; 2025 — H2 (Meses 7–12) &nbsp;·&nbsp; Objetivo: Escalar prospección. Consolidar presencia Argentina.</div>
     <div class="phase-body">
-      <div class="phase-actions">
+      <div class="phase-acts">
         <ul class="bullet-list">
           <li>Prospección activa: 20–30 llamadas/semana, LinkedIn outreach</li>
           <li>Documentar y publicar primer caso de éxito</li>
@@ -918,11 +946,11 @@
     </div>
   </div>
 
-  <div class="phase-card">
-    <div class="phase-header" style="background:
+  <div class="phase">
+    <div class="phase-h" style="background:
 #FEF9E7">FASE 3 &nbsp;·&nbsp; 2026 — Expansión Regional &nbsp;·&nbsp; Objetivo: Entrada Uruguay y Paraguay. Escalar Argentina.</div>
     <div class="phase-body">
-      <div class="phase-actions">
+      <div class="phase-acts">
         <ul class="bullet-list">
           <li>Renegociar con DELIE (exclusividad Uruguay+Paraguay + mejora comisión)</li>
           <li>Viajes a Montevideo y Asunción (reuniones, prospectos)</li>
@@ -935,11 +963,11 @@
     </div>
   </div>
 
-  <div class="phase-card">
-    <div class="phase-header" style="background:
+  <div class="phase">
+    <div class="phase-h" style="background:
 #F5EEF8">FASE 4 &nbsp;·&nbsp; 2027+ — Marca Personal y Escala &nbsp;·&nbsp; Objetivo: Posición dominante Cono Sur. Activar marca personal.</div>
     <div class="phase-body">
-      <div class="phase-actions">
+      <div class="phase-acts">
         <ul class="bullet-list">
           <li>Lanzamiento marca personal (TikTok, Instagram, YouTube)</li>
           <li>Programa de impulso/premios a personas que se esfuerzan</li>
@@ -998,16 +1026,16 @@
   </table></div>
 
   <h2>9.3 Frases Clave para la Reunión</h2>
-  <div class="phrase-context">Para mostrar ambición:</div>
-  <div class="phrase-quote">"No queremos solo ser distribuidores. Queremos construir DELIE en Latinoamérica junto a ustedes. Argentina es el punto de partida."</div>
-  <div class="phrase-context">Para negociar territorio:</div>
-  <div class="phrase-quote">"Tenemos red en Argentina, Uruguay y Paraguay. Operamos regionalmente. ¿Podemos discutir exclusividad para los tres desde el inicio?"</div>
-  <div class="phrase-context">Para negociar comisión:</div>
-  <div class="phrase-quote">"Entendemos el 3% como base. ¿Hay espacio para incentivar clientes que nosotros traemos vs. leads que proveen ustedes?"</div>
-  <div class="phrase-context">Para mostrar compromiso:</div>
-  <div class="phrase-quote">"Estamos dispuestos a invertir nuestro tiempo y capital. Queremos que nos vaya bien a todos."</div>
-  <div class="phrase-context">Para pedir claridad en soporte:</div>
-  <div class="phrase-quote">"Para representarlos de la mejor manera, necesitamos entender exactamente qué soporte técnico podemos prometer a los clientes."</div>
+  <div class="phrase-ctx">Para mostrar ambición:</div>
+  <div class="phrase-q">"No queremos solo ser distribuidores. Queremos construir DELIE en Latinoamérica junto a ustedes. Argentina es el punto de partida."</div>
+  <div class="phrase-ctx">Para negociar territorio:</div>
+  <div class="phrase-q">"Tenemos red en Argentina, Uruguay y Paraguay. Operamos regionalmente. ¿Podemos discutir exclusividad para los tres desde el inicio?"</div>
+  <div class="phrase-ctx">Para negociar comisión:</div>
+  <div class="phrase-q">"Entendemos el 3% como base. ¿Hay espacio para incentivar clientes que nosotros traemos vs. leads que proveen ustedes?"</div>
+  <div class="phrase-ctx">Para mostrar compromiso:</div>
+  <div class="phrase-q">"Estamos dispuestos a invertir nuestro tiempo y capital. Queremos que nos vaya bien a todos."</div>
+  <div class="phrase-ctx">Para pedir claridad en soporte:</div>
+  <div class="phrase-q">"Para representarlos de la mejor manera, necesitamos entender exactamente qué soporte técnico podemos prometer a los clientes."</div>
 
   <h2>9.4 Walk-Away Points — Condiciones que NO Aceptarían</h2>
   <div class="tbl-wrap"><table>
@@ -1134,64 +1162,64 @@
     <span class="section-title">Riesgos y Mitigación</span>
   </div>
 
-  <div class="risk-card">
-    <div class="risk-header">
+  <div class="risk">
+    <div class="risk-h">
       <div class="risk-id">R1</div>
       <div class="risk-title">Falta de experiencia comercial B2B</div>
-      <div class="risk-prob" style="color:var(--red)">Probabilidad: Alta</div>
-      <div class="risk-impact" style="color:var(--gold)">Impacto: Medio</div>
+      <div class="risk-p" style="color:var(--red)">Probabilidad: Alta</div>
+      <div class="risk-i" style="color:var(--gold)">Impacto: Medio</div>
     </div>
-    <div class="risk-mit"><ul><li>Respaldo familiar con experiencia: mentores revisan propuestas antes de enviar</li><li>Training completo de DELIE antes de primer cliente</li><li>Empezar con los 2 leads calificados (modo fácil para aprender)</li><li>Documentar todo y crear playbook propio</li></ul></div>
+    <div class="risk-body"><ul><li>Respaldo familiar con experiencia: mentores revisan propuestas antes de enviar</li><li>Training completo de DELIE antes de primer cliente</li><li>Empezar con los 2 leads calificados (modo fácil para aprender)</li><li>Documentar todo y crear playbook propio</li></ul></div>
   </div>
 
-  <div class="risk-card">
-    <div class="risk-header">
+  <div class="risk">
+    <div class="risk-h">
       <div class="risk-id">R2</div>
       <div class="risk-title">Tiempo limitado (5to año de ingeniería)</div>
-      <div class="risk-prob" style="color:var(--red)">Probabilidad: Alta</div>
-      <div class="risk-impact" style="color:var(--gold)">Impacto: Medio</div>
+      <div class="risk-p" style="color:var(--red)">Probabilidad: Alta</div>
+      <div class="risk-i" style="color:var(--gold)">Impacto: Medio</div>
     </div>
-    <div class="risk-mit"><ul><li>División clara: uno en prospección, otro en soporte técnico</li><li>Tu amigo en pasantías (más disponibilidad) compensa picos</li><li>En 9 meses se gradúan → año 2 con full time disponible</li><li>Templates y procesos para ser eficientes con menos horas</li></ul></div>
+    <div class="risk-body"><ul><li>División clara: uno en prospección, otro en soporte técnico</li><li>Tu amigo en pasantías (más disponibilidad) compensa picos</li><li>En 9 meses se gradúan → año 2 con full time disponible</li><li>Templates y procesos para ser eficientes con menos horas</li></ul></div>
   </div>
 
-  <div class="risk-card">
-    <div class="risk-header">
+  <div class="risk">
+    <div class="risk-h">
       <div class="risk-id">R3</div>
       <div class="risk-title">Ciclo de venta muy largo (8–18 meses)</div>
-      <div class="risk-prob" style="color:var(--red)">Probabilidad: Alta</div>
-      <div class="risk-impact" style="color:var(--red)">Impacto: Alto</div>
+      <div class="risk-p" style="color:var(--red)">Probabilidad: Alta</div>
+      <div class="risk-i" style="color:var(--red)">Impacto: Alto</div>
     </div>
-    <div class="risk-mit"><ul><li>Capital disponible: aguantan 12+ meses sin ingresos</li><li>Pipeline múltiple: 10–20 prospectos en distintas fases simultáneas</li><li>Expectativas realistas: mentalidad de maratón, no sprint</li><li>Ecommerce como flujo paralelo que reduce la ansiedad financiera</li></ul></div>
+    <div class="risk-body"><ul><li>Capital disponible: aguantan 12+ meses sin ingresos</li><li>Pipeline múltiple: 10–20 prospectos en distintas fases simultáneas</li><li>Expectativas realistas: mentalidad de maratón, no sprint</li><li>Ecommerce como flujo paralelo que reduce la ansiedad financiera</li></ul></div>
   </div>
 
-  <div class="risk-card">
-    <div class="risk-header">
+  <div class="risk">
+    <div class="risk-h">
       <div class="risk-id">R4</div>
       <div class="risk-title">Competencia con marcas establecidas (Mecalux)</div>
-      <div class="risk-prob" style="color:var(--red)">Probabilidad: Alta</div>
-      <div class="risk-impact" style="color:var(--gold)">Impacto: Medio</div>
+      <div class="risk-p" style="color:var(--red)">Probabilidad: Alta</div>
+      <div class="risk-i" style="color:var(--gold)">Impacto: Medio</div>
     </div>
-    <div class="risk-mit"><ul><li>Segmentación: ticket USD 100k–800k (sweet spot donde Mecalux cobra más)</li><li>Precio 30–40% más bajo que Mecalux</li><li>Servicio ultra-personalizado vs. burocracia corporativa</li><li>Casos de éxito propios desde el primer año</li></ul></div>
+    <div class="risk-body"><ul><li>Segmentación: ticket USD 100k–800k (sweet spot donde Mecalux cobra más)</li><li>Precio 30–40% más bajo que Mecalux</li><li>Servicio ultra-personalizado vs. burocracia corporativa</li><li>Casos de éxito propios desde el primer año</li></ul></div>
   </div>
 
-  <div class="risk-card">
-    <div class="risk-header">
+  <div class="risk">
+    <div class="risk-h">
       <div class="risk-id">R5</div>
       <div class="risk-title">Conflicto entre socios</div>
-      <div class="risk-prob" style="color:var(--green)">Probabilidad: Baja</div>
-      <div class="risk-impact" style="color:var(--red)">Impacto: Muy Alto</div>
+      <div class="risk-p" style="color:var(--green)">Probabilidad: Baja</div>
+      <div class="risk-i" style="color:var(--red)">Impacto: Muy Alto</div>
     </div>
-    <div class="risk-mit"><ul><li>Acuerdo de socios por escrito: roles, ingresos, mecanismo de salida</li><li>Reuniones semanales: hablar problemas antes que se pudran</li><li>Familia como mediadores si escala</li><li>Expectativas alineadas desde el inicio (ya lo están)</li></ul></div>
+    <div class="risk-body"><ul><li>Acuerdo de socios por escrito: roles, ingresos, mecanismo de salida</li><li>Reuniones semanales: hablar problemas antes que se pudran</li><li>Familia como mediadores si escala</li><li>Expectativas alineadas desde el inicio (ya lo están)</li></ul></div>
   </div>
 
-  <div class="risk-card">
-    <div class="risk-header">
+  <div class="risk">
+    <div class="risk-h">
       <div class="risk-id">R6</div>
       <div class="risk-title">Cambio político-económico desfavorable en Argentina</div>
-      <div class="risk-prob" style="color:var(--gold)">Probabilidad: Media</div>
-      <div class="risk-impact" style="color:var(--red)">Impacto: Alto</div>
+      <div class="risk-p" style="color:var(--gold)">Probabilidad: Media</div>
+      <div class="risk-i" style="color:var(--red)">Impacto: Alto</div>
     </div>
-    <div class="risk-mit"><ul><li>Diversificación geográfica: Uruguay y Paraguay como plan B</li><li>Estructura lean: sin oficina ni empleados fijos en año 1</li><li>Enfoque en sectores resilientes: alimentos, logística, farmacéutica</li></ul></div>
+    <div class="risk-body"><ul><li>Diversificación geográfica: Uruguay y Paraguay como plan B</li><li>Estructura lean: sin oficina ni empleados fijos en año 1</li><li>Enfoque en sectores resilientes: alimentos, logística, farmacéutica</li></ul></div>
   </div>
 </div>
 
@@ -1216,40 +1244,40 @@
 
   <h2>13.2 Roadmap 2025–2029</h2>
 
-  <div class="roadmap-card" style="border: 2px solid var(--accent)">
-    <div class="roadmap-year" style="color:var(--accent); background:
+  <div class="rm-card" style="border: 2px solid var(--accent)">
+    <div class="rm-year" style="color:var(--accent); background:
 #EBF5FB; border-color:var(--accent)">2025</div>
-    <div class="roadmap-content" style="background:
+    <div class="rm-body" style="background:
 #EBF5FB">
       <h3 style="color:var(--navy)">Fundación</h3>
       <ul><li>Q1: Firmar con DELIE. Training. Activar 2 leads.</li><li>Q2: Cerrar 1–2 ventas. Prospectar 20+ empresas.</li><li>Q3–Q4: Escalar pipeline. 3–5 ventas año 1.</li><li><strong>META: USD 500k–1.2M en ventas. Graduación.</strong></li></ul>
     </div>
   </div>
 
-  <div class="roadmap-card" style="border: 2px solid var(--green)">
-    <div class="roadmap-year" style="color:var(--green); background:
+  <div class="rm-card" style="border: 2px solid var(--green)">
+    <div class="rm-year" style="color:var(--green); background:
 #EAFAF1; border-color:var(--green)">2026</div>
-    <div class="roadmap-content" style="background:
+    <div class="rm-body" style="background:
 #EAFAF1">
       <h3 style="color:var(--navy)">Expansión Regional</h3>
       <ul><li>Q1: Renegociar territorio (URY + PRY) y comisión.</li><li>Q2: Entrada Uruguay. Primer empleado si justifica.</li><li>Q3: Consolidar pipeline 20+ prospectos.</li><li>Q4: Exploración Paraguay. Prep Chile.</li><li><strong>META: USD 1.5M–2.5M. 8–12 ventas.</strong></li></ul>
     </div>
   </div>
 
-  <div class="roadmap-card" style="border: 2px solid var(--gold)">
-    <div class="roadmap-year" style="color:var(--gold); background:
+  <div class="rm-card" style="border: 2px solid var(--gold)">
+    <div class="rm-year" style="color:var(--gold); background:
 #FEF9E7; border-color:var(--gold)">2027</div>
-    <div class="roadmap-content" style="background:
+    <div class="rm-body" style="background:
 #FEF9E7">
       <h3 style="color:var(--navy)">Consolidación + Marca Personal</h3>
       <ul><li>Q1: LANZAMIENTO marca personal. Primer impulso.</li><li>Q2: Entrada Chile. Contenido 5x/semana.</li><li>Q3: Equipo 3–5 personas. Oficina pequeña.</li><li>Q4: 10k–20k seguidores. Leads inbound.</li><li><strong>META: USD 3M–5M. Referente ASRS Cono Sur.</strong></li></ul>
     </div>
   </div>
 
-  <div class="roadmap-card" style="border: 2px solid var(--navy)">
-    <div class="roadmap-year" style="color:var(--navy); background:
+  <div class="rm-card" style="border: 2px solid var(--navy)">
+    <div class="rm-year" style="color:var(--navy); background:
 #F0F3F4; border-color:var(--navy); font-size:22px">2028–<br>2029</div>
-    <div class="roadmap-content" style="background:
+    <div class="rm-body" style="background:
 #F0F3F4">
       <h3 style="color:var(--navy)">Dominio Regional</h3>
       <ul><li>Distribuidora formal establecida.</li><li>Colombia / Perú en exploración.</li><li>100k+ seguidores. Programas de impulso escalados.</li><li>Múltiples fuentes de ingreso.</li><li><strong>META: USD 8M–12M. USD 70k–200k neto/persona.</strong></li></ul>

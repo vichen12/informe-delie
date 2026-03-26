@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(python3:*)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(find /c/Users/viche/Desktop -maxdepth 2 -name *.html -o -name *.js -o -name *.vue)",
+      "Bash(ls:*)"
     ]
   }
 }
