@@ -3265,40 +3265,125 @@
 
     ACA SERIA EL NUEVO OSEA LA V2
     <div id="v2" class="version" style="display: none">
-      <div>
-        <!-- ══════ COVER ══════ -->
-        <div class="cover">
-          <div class="tag">Business Brain · Versión 2.0</div>
-          <h1>DELIE ARGENTINA</h1>
-          <div class="subtitle">
-            Plan Estratégico de Representación Oficial 2025–2027
-          </div>
-          <div class="tag" style="margin-top: 10px">
-            Automatización ASRS · Mercado Argentino · Roadmap 24 Meses
-          </div>
-          <div class="meta">Marzo 2026 · CONFIDENCIAL — USO INTERNO</div>
-          <div class="v2-badge">▲ VERSIÓN MEJORADA — SOLO ARGENTINA</div>
-        </div>
-        <div class="metrics-strip">
-          <div class="m-cell">
-            <div class="m-val" style="color: var(--green)">~USD 100M/año</div>
-            <div class="m-lbl">Mercado LATAM Vacío (DELIE)</div>
-          </div>
-          <div class="m-cell">
-            <div class="m-val" style="color: var(--accent)">+9.88%/año</div>
-            <div class="m-lbl">Crecimiento ASRS LATAM</div>
-          </div>
-          <div class="m-cell">
-            <div class="m-val" style="color: var(--gold)">2025–2027</div>
-            <div class="m-lbl">Ventana de Oportunidad</div>
-          </div>
-          <div class="m-cell">
-            <div class="m-val" style="color: var(--blue)">3–5 años</div>
-            <div class="m-lbl">Años a Posición Dominante</div>
-          </div>
-        </div>
+      <!doctype html>
+      <html lang="es">
+        <head>
+          <meta charset="UTF-8" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+          <title>Business Brain — DELIE Argentina v2</title>
+          <style>
+            :root {
+              --navy: #0d1b2a;
+              --blue: #1b4f72;
+              --accent: #2e86c1;
+              --gold: #f39c12;
+              --green: #1e8449;
+              --red: #c0392b;
+              --light-bg: #ebf5fb;
+              --alt-row: #f2f3f4;
+              --border: #aed6f1;
+              --text: #1a1a2e;
+              --muted: #5d6d7e;
+              --white: #ffffff;
+            }
+            * {
+              box-sizing: border-box;
+              margin: 0;
+              padding: 0;
+            }
+            body {
+              font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+              font-size: 14px;
+              color: var(--text);
+              background: #f5f6fa;
+              line-height: 1.65;
+            }
 
-        <div class="container">
+            /* COVER */
+            .cover {
+              background: var(--navy);
+              color: white;
+              text-align: center;
+              padding: 80px 40px 60px;
+            }
+            .cover .tag {
+              color: var(--gold);
+              font-size: 12px;
+              font-weight: 700;
+              letter-spacing: 3px;
+              text-transform: uppercase;
+              margin-bottom: 12px;
+            }
+            .cover h1 {
+              font-size: 50px;
+              font-weight: 900;
+              letter-spacing: 2px;
+              border-bottom: 4px solid var(--gold);
+              display: inline-block;
+              padding-bottom: 16px;
+              margin-bottom: 20px;
+            }
+            .cover .subtitle {
+              font-size: 18px;
+              color: #aed6f1;
+              margin-bottom: 8px;
+            }
+            .cover .meta {
+              font-size: 12px;
+              color: #bdc3c7;
+              margin-top: 18px;
+            }
+            .cover .v2-badge {
+              display: inline-block;
+              background: var(--gold);
+              color: var(--navy);
+              font-weight: 900;
+              font-size: 11px;
+              padding: 4px 12px;
+              border-radius: 20px;
+              margin-top: 14px;
+              letter-spacing: 1px;
+            }
+
+            /* METRICS STRIP */
+            .metrics-strip {
+              display: grid;
+              grid-template-columns: repeat(4, 1fr);
+              background: white;
+              border-top: 4px solid var(--gold);
+            }
+            .m-cell {
+              padding: 20px 14px 14px;
+              text-align: center;
+              border-right: 1px solid var(--border);
+            }
+            .m-cell:last-child {
+              border-right: none;
+            }
+            .m-val {
+              font-size: 24px;
+              font-weight: 800;
+              line-height: 1.1;
+            }
+            .m-lbl {
+              font-size: 10px;
+              color: var(--muted);
+              margin-top: 5px;
+              text-transform: uppercase;
+              letter-spacing: 0.5px;
+            }
+
+            /* LAYOUT */
+            .container {
+              max-width: 1100px;
+              margin: 0 auto;
+              padding: 0 24px 60px;
+            }
+
+            /* TOC */
             .toc {
               background: white;
               border-radius: 8px;
